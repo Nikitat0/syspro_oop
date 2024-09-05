@@ -1,9 +1,8 @@
 package ru.nikitat0.heapsort;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Arrays;
 import java.util.Random;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class MainTest {
@@ -21,7 +20,7 @@ class MainTest {
     int[] sample = sampleArray();
     Main.makeHeap(sample);
     for (int i = 1; i < sample.length; i++) {
-      assertTrue(sample[i] <= sample[(i - 1) / 2], "Heap invariant is violated");
+      Assertions.assertTrue(sample[i] <= sample[(i - 1) / 2], "Heap invariant is violated");
     }
   }
 
@@ -31,6 +30,6 @@ class MainTest {
     int[] actual = expected.clone();
     Arrays.sort(expected);
     Main.heapsort(actual);
-    assertArrayEquals(expected, actual);
+    Assertions.assertArrayEquals(expected, actual);
   }
 }
