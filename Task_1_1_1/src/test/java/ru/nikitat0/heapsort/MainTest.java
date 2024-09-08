@@ -34,6 +34,11 @@ class MainTest {
         Arrays.sort(expected);
         Main.heapsort(actual);
         Assertions.assertArrayEquals(expected, actual);
+
+        expected = new int[] { 2, 2, 2, 2, 2 };
+        actual = expected.clone();
+        Main.heapsort(actual);
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
