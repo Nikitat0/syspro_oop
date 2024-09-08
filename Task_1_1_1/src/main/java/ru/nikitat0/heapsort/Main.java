@@ -2,10 +2,10 @@ package ru.nikitat0.heapsort;
 
 import java.util.Arrays;
 
-/** Contains all program function */
+/** Contains all program function. */
 public class Main {
     /**
-     * Entry point
+     * Entry point.
      *
      * @param args Program arguments
      */
@@ -16,9 +16,9 @@ public class Main {
     }
 
     /**
-     * Constructs a binary heap from an array in-place.
-     *
-     * @param array Array with elements to make the heap
+     * Sorts an array.
+     * 
+     * @param array Array to sort
      */
     public static void heapsort(int[] array) {
         makeHeap(array);
@@ -48,9 +48,9 @@ public class Main {
     }
 
     /**
-     * Sorts an array.
-     *
-     * @param array Array to sort
+     * Constructs a binary heap from an array in-place.
+     * 
+     * @param array Array with elements to make the heap
      */
     public static void makeHeap(int[] array) {
         for (int i = 1; i < array.length; i++) {

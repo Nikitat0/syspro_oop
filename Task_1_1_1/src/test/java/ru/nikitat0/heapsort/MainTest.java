@@ -6,10 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class MainTest {
-    static int[] sampleArray() {
+    private static final int[] EMPTY_ARRAY = new int[] {};
+    private static final int SAMPLE_ARRAY_SIZE = 100;
+
+    private static int[] sampleArray(final int length) {
         Random rd = new Random();
-        int[] sample = new int[100];
-        for (int i = 0; i < 100; i++) {
+        int[] sample = new int[length];
+        for (int i = 0; i < length; i++) {
             sample[i] = rd.nextInt();
         }
         return sample;
@@ -17,7 +20,7 @@ class MainTest {
 
     @Test
     void testMakeHeap() {
-        int[] sample = sampleArray();
+        int[] sample = sampleArray(SAMPLE_ARRAY_SIZE);
         Main.makeHeap(sample);
         for (int i = 1; i < sample.length; i++) {
             Assertions.assertTrue(sample[i] <= sample[(i - 1) / 2], "Heap invariant is violated");
@@ -26,10 +29,16 @@ class MainTest {
 
     @Test
     void testHeapsort() {
-        int[] expected = sampleArray();
+        int[] expected = sampleArray(SAMPLE_ARRAY_SIZE);
         int[] actual = expected.clone();
         Arrays.sort(expected);
         Main.heapsort(actual);
         Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void testWithEmptyArrays() {
+        Main.makeHeap(EMPTY_ARRAY);
+        Main.heapsort(EMPTY_ARRAY);
     }
 }
