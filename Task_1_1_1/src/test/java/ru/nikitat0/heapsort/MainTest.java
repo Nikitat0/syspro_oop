@@ -46,4 +46,14 @@ class MainTest {
         Main.makeHeap(EMPTY_ARRAY);
         Main.heapsort(EMPTY_ARRAY);
     }
+
+    @Test
+    void testWithSingletonArray() {
+        int[] singleton = sampleArray(1);
+        int[] expected = singleton.clone();
+        Main.makeHeap(singleton);
+        Assertions.assertArrayEquals(singleton, expected);
+        Main.heapsort(singleton);
+        Assertions.assertArrayEquals(singleton, expected);
+    }
 }
