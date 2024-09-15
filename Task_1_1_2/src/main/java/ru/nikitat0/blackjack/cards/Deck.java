@@ -40,8 +40,9 @@ public final class Deck {
     /**
      * Picks a card from this deck.
      * 
-     * @throws NoSuchElementException if deck is empty
      * @return card lying on top
+     *
+     * @throws NoSuchElementException if deck is empty
      */
     public Card pick() {
         if (cards.isEmpty()) {
