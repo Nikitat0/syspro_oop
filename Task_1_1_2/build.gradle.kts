@@ -17,6 +17,10 @@ application {
     mainClass = "ru.nikitat0.blackjack.Main"
 }
 
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}
+
 tasks.named<Test>("test") {
     useJUnitPlatform()
 }
