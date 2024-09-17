@@ -6,12 +6,11 @@ import ru.nikitat0.blackjack.cards.Card;
 import ru.nikitat0.blackjack.cards.CardSet;
 import ru.nikitat0.blackjack.cards.CardView;
 import ru.nikitat0.blackjack.cards.CardView.CardWithPoints;
+import static ru.nikitat0.blackjack.cards.CardView.CLOSED_CARD;
 import ru.nikitat0.blackjack.cards.Deck;
 import ru.nikitat0.blackjack.cards.Rank;
 import ru.nikitat0.blackjack.game.PlayerController.Cause;
 import ru.nikitat0.blackjack.game.PlayerController.Side;
-
-import static ru.nikitat0.blackjack.cards.CardView.CLOSED_CARD;
 
 /**
  * A blackjack game.
@@ -22,8 +21,8 @@ public final class Game {
 
     /**
      * Constructs new game.
-     * 
-     * @param playerController
+     *
+     * @param playerController player controller
      */
     public Game(PlayerController playerController) {
         this.playerController = playerController;
@@ -39,6 +38,8 @@ public final class Game {
     }
 
     /**
+     * Returns current game score.
+     *
      * @return current score
      */
     public Score getScore() {
@@ -126,6 +127,8 @@ public final class Game {
         }
 
         /**
+         * Returns ordinal number of round.
+         *
          * @return ordinal number of this round
          */
         public int ordinalNumber() {
@@ -134,7 +137,7 @@ public final class Game {
 
         /**
          * Shows player hand.
-         * 
+         *
          * @return player hand
          */
         public List<CardView> seePlayerHand() {

@@ -26,9 +26,9 @@ public final class Score {
 
     /**
      * Constructs left:right score.
-     * 
-     * @param left
-     * @param right
+     *
+     * @param left  left
+     * @param right right
      */
     public Score(int left, int right) {
         this.left = left;
@@ -56,8 +56,8 @@ public final class Score {
     @Override
     public boolean equals(Object o) {
         if (o instanceof Score) {
-            Score oScore = (Score) o;
-            return this.left == oScore.left && this.right == oScore.right;
+            Score other = (Score) o;
+            return this.left == other.left && this.right == other.right;
         }
         return false;
     }

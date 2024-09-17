@@ -7,12 +7,14 @@ import ru.nikitat0.blackjack.cards.Card;
  */
 public interface PlayerController {
     /**
+     * Asks player about picking card.
      *
      * @return true, if player is going to pick one more card
      */
     boolean doPickCard();
 
     /**
+     * Asks player about next round.
      *
      * @return true, if player is going to play one more round
      */
@@ -27,7 +29,7 @@ public interface PlayerController {
 
     /**
      * Called when round ends.
-     * 
+     *
      * @param winner winner
      * @param reason reason
      */
