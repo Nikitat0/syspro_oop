@@ -41,4 +41,38 @@ class CardTest {
         }
         Assertions.assertThrows(NoSuchElementException.class, () -> deck.pick());
     }
+
+    @Test
+    void testEmptyCardSet() {
+        CardSet cards = new CardSet();
+        Assertions.assertEquals(0, cards.points());
+        Assertions.assertFalse(cards.isBlackjack());
+        Assertions.assertTrue(cards.asList().isEmpty());
+    }
+
+    @Test
+    void testCardSet() {
+        Suit suit = Suit.CLUBS;
+        Card ace = new Card(suit, Rank.ACE);
+        Card two = new Card(suit, Rank.TWO);
+        Card ten = new Card(suit, Rank.TEN);
+        Card jack = new Card(suit, Rank.JACK);
+
+        Assertions.assertEquals(2, new CardSet(ace, ace).points());
+        Assertions.assertEquals(13, new CardSet(ace, two).points());
+        Assertions.assertEquals(20, new CardSet(ten, jack).points());
+        Assertions.assertEquals(21, new CardSet(ace, jack).points());
+
+        Assertions.assertTrue(new CardSet(ace, jack).isBlackjack());
+        Assertions.assertFalse(new CardSet(ace, ace).isBlackjack());
+
+        CardSet cards = new CardSet();
+        cards.add(jack);
+        cards.add(ace);
+        Assertions.assertTrue(cards.isBlackjack());
+        Assertions.assertEquals(21, cards.points());
+        cards.add(ace);
+        Assertions.assertFalse(cards.isBlackjack());
+        Assertions.assertEquals(12, cards.points());
+    }
 }
