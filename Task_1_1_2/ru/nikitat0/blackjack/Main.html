@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9};
-var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
+var data = {"i0":10,"i1":10,"i2":9,"i3":10,"i4":10,"i5":10,"i6":10};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -88,15 +88,15 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
@@ -130,32 +130,65 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></code></dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Main</span>
-extends java.lang.Object</pre>
-<div class="block">Contains static method main.</div>
+extends java.lang.Object
+implements <a href="game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></pre>
+<div class="block">Contains game interface.</div>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<!-- ======== NESTED CLASS SUMMARY ======== -->
 <section>
 <ul class="blockList">
-<li class="blockList"><a id="constructor.summary">
+<li class="blockList"><a id="nested.class.summary">
 <!--   -->
 </a>
-<h3>Constructor Summary</h3>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="nested.classes.inherited.from.class.ru.nikitat0.blackjack.game.PlayerController">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;ru.nikitat0.blackjack.game.<a href="game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></h3>
+<code><a href="game/PlayerController.Cause.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Cause</a>, <a href="game/PlayerController.Side.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Side</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- =========== FIELD SUMMARY =========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
 <table class="memberSummary">
-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colFirst" scope="col">Constructor</th>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Main</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#IDENTATION">IDENTATION</a></span></code></th>
+<td class="colLast">
+<div class="block">Identation pattern used in cli.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#TURN_SEPARATOR">TURN_SEPARATOR</a></span></code></th>
+<td class="colLast">
+<div class="block">Separator used in cli.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -169,17 +202,57 @@ extends java.lang.Object</pre>
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#doPickCard()">doPickCard</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#doPlayNextRound()">doPlayNextRound</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#main(java.lang.String%5B%5D)">main</a></span>&#8203;(java.lang.String[]&nbsp;args)</code></th>
 <td class="colLast">
 <div class="block">Starts with program.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDealerTurn(ru.nikitat0.blackjack.cards.Card)">onDealerTurn</a></span>&#8203;(<a href="cards/Card.html" title="class in ru.nikitat0.blackjack.cards">Card</a>&nbsp;card)</code></th>
+<td class="colLast">
+<div class="block">Called when dealer turn begins.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPick(ru.nikitat0.blackjack.game.PlayerController.Side,ru.nikitat0.blackjack.cards.Card)">onPick</a></span>&#8203;(<a href="game/PlayerController.Side.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Side</a>&nbsp;who,
+      <a href="cards/Card.html" title="class in ru.nikitat0.blackjack.cards">Card</a>&nbsp;card)</code></th>
+<td class="colLast">
+<div class="block">Called when someone pick a card.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onRoundBegins(ru.nikitat0.blackjack.game.Game.Round)">onRoundBegins</a></span>&#8203;(<a href="game/Game.Round.html" title="class in ru.nikitat0.blackjack.game">Game.Round</a>&nbsp;round)</code></th>
+<td class="colLast">
+<div class="block">Called when round begins.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onRoundEnds(ru.nikitat0.blackjack.game.PlayerController.Side,ru.nikitat0.blackjack.game.PlayerController.Cause)">onRoundEnds</a></span>&#8203;(<a href="game/PlayerController.Side.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Side</a>&nbsp;winner,
+           <a href="game/PlayerController.Cause.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Cause</a>&nbsp;reason)</code></th>
+<td class="colLast">
+<div class="block">Called when round ends.</div>
 </td>
 </tr>
 </table>
@@ -199,20 +272,31 @@ extends java.lang.Object</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- ============ FIELD DETAIL =========== -->
 <section>
 <ul class="blockList">
-<li class="blockList"><a id="constructor.detail">
+<li class="blockList"><a id="field.detail">
 <!--   -->
 </a>
-<h3>Constructor Detail</h3>
-<a id="&lt;init&gt;()">
+<h3>Field Detail</h3>
+<a id="IDENTATION">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>IDENTATION</h4>
+<pre>public static&nbsp;java.lang.String IDENTATION</pre>
+<div class="block">Identation pattern used in cli.</div>
+</li>
+</ul>
+<a id="TURN_SEPARATOR">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>Main</h4>
-<pre>public&nbsp;Main()</pre>
+<h4>TURN_SEPARATOR</h4>
+<pre>public static&nbsp;java.lang.String TURN_SEPARATOR</pre>
+<div class="block">Separator used in cli.</div>
 </li>
 </ul>
 </li>
@@ -228,7 +312,7 @@ extends java.lang.Object</pre>
 <a id="main(java.lang.String[])">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>main</h4>
 <pre class="methodSignature">public static&nbsp;void&nbsp;main&#8203;(java.lang.String[]&nbsp;args)</pre>
@@ -236,6 +320,105 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>args</code> - Program arguments</dd>
+</dl>
+</li>
+</ul>
+<a id="doPickCard()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>doPickCard</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;doPickCard()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="game/PlayerController.html#doPickCard()">doPickCard</a></code>&nbsp;in interface&nbsp;<code><a href="game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true, if player is going to pick one more card</dd>
+</dl>
+</li>
+</ul>
+<a id="doPlayNextRound()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>doPlayNextRound</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;doPlayNextRound()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="game/PlayerController.html#doPlayNextRound()">doPlayNextRound</a></code>&nbsp;in interface&nbsp;<code><a href="game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true, if player is going to play one more round</dd>
+</dl>
+</li>
+</ul>
+<a id="onRoundBegins(ru.nikitat0.blackjack.game.Game.Round)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onRoundBegins</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;onRoundBegins&#8203;(<a href="game/Game.Round.html" title="class in ru.nikitat0.blackjack.game">Game.Round</a>&nbsp;round)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="game/PlayerController.html#onRoundBegins(ru.nikitat0.blackjack.game.Game.Round)">PlayerController</a></code></span></div>
+<div class="block">Called when round begins.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="game/PlayerController.html#onRoundBegins(ru.nikitat0.blackjack.game.Game.Round)">onRoundBegins</a></code>&nbsp;in interface&nbsp;<code><a href="game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>round</code> - rouns object</dd>
+</dl>
+</li>
+</ul>
+<a id="onRoundEnds(ru.nikitat0.blackjack.game.PlayerController.Side,ru.nikitat0.blackjack.game.PlayerController.Cause)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onRoundEnds</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;onRoundEnds&#8203;(<a href="game/PlayerController.Side.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Side</a>&nbsp;winner,
+                        <a href="game/PlayerController.Cause.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Cause</a>&nbsp;reason)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="game/PlayerController.html#onRoundEnds(ru.nikitat0.blackjack.game.PlayerController.Side,ru.nikitat0.blackjack.game.PlayerController.Cause)">PlayerController</a></code></span></div>
+<div class="block">Called when round ends.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="game/PlayerController.html#onRoundEnds(ru.nikitat0.blackjack.game.PlayerController.Side,ru.nikitat0.blackjack.game.PlayerController.Cause)">onRoundEnds</a></code>&nbsp;in interface&nbsp;<code><a href="game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="onPick(ru.nikitat0.blackjack.game.PlayerController.Side,ru.nikitat0.blackjack.cards.Card)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onPick</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;onPick&#8203;(<a href="game/PlayerController.Side.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Side</a>&nbsp;who,
+                   <a href="cards/Card.html" title="class in ru.nikitat0.blackjack.cards">Card</a>&nbsp;card)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="game/PlayerController.html#onPick(ru.nikitat0.blackjack.game.PlayerController.Side,ru.nikitat0.blackjack.cards.Card)">PlayerController</a></code></span></div>
+<div class="block">Called when someone pick a card.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="game/PlayerController.html#onPick(ru.nikitat0.blackjack.game.PlayerController.Side,ru.nikitat0.blackjack.cards.Card)">onPick</a></code>&nbsp;in interface&nbsp;<code><a href="game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>who</code> - who picks</dd>
+<dd><code>card</code> - picked card</dd>
+</dl>
+</li>
+</ul>
+<a id="onDealerTurn(ru.nikitat0.blackjack.cards.Card)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>onDealerTurn</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;onDealerTurn&#8203;(<a href="cards/Card.html" title="class in ru.nikitat0.blackjack.cards">Card</a>&nbsp;card)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="game/PlayerController.html#onDealerTurn(ru.nikitat0.blackjack.cards.Card)">PlayerController</a></code></span></div>
+<div class="block">Called when dealer turn begins.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="game/PlayerController.html#onDealerTurn(ru.nikitat0.blackjack.cards.Card)">onDealerTurn</a></code>&nbsp;in interface&nbsp;<code><a href="game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>card</code> - card opened by dealer</dd>
 </dl>
 </li>
 </ul>
@@ -290,15 +473,15 @@ extends java.lang.Object</pre>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>

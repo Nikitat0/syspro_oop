@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":2,"i1":2,"i2":2,"i3":4,"i4":4};
-var tabs = {65535:["t0","All Classes"],2:["t2","Class Summary"],4:["t3","Enum Summary"]};
+var data = {"i0":2,"i1":2,"i2":1,"i3":2,"i4":1,"i5":2,"i6":2,"i7":2,"i8":1,"i9":4,"i10":4,"i11":4,"i12":2,"i13":4};
+var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"],4:["t3","Enum Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -105,7 +105,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <table class="typeSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Enum Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Interface Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Enum Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Class</th>
 <th class="colLast" scope="col">Description</th>
@@ -117,24 +117,78 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </th>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/cards/CardSet.html" title="class in ru.nikitat0.blackjack.cards">CardSet</a></td>
+<th class="colLast" scope="row">
+<div class="block">A set of cards.</div>
+</th>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/cards/CardView.html" title="interface in ru.nikitat0.blackjack.cards">CardView</a></td>
+<th class="colLast" scope="row">
+<div class="block">An representation of card on gaming table.</div>
+</th>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/cards/CardView.CardWithPoints.html" title="class in ru.nikitat0.blackjack.cards">CardView.CardWithPoints</a></td>
+<th class="colLast" scope="row">
+<div class="block">A view of card with assigned points.</div>
+</th>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/cards/CardViewer.html" title="interface in ru.nikitat0.blackjack.cards">CardViewer</a>&lt;<a href="ru/nikitat0/blackjack/cards/CardViewer.html" title="type parameter in CardViewer">T</a>&gt;</td>
+<th class="colLast" scope="row">
+<div class="block">An entity seeing the card.</div>
+</th>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><a href="ru/nikitat0/blackjack/cards/Deck.html" title="class in ru.nikitat0.blackjack.cards">Deck</a></td>
 <th class="colLast" scope="row">
 <div class="block">A 52-card deck.</div>
 </th>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><a href="ru/nikitat0/blackjack/Main.html" title="class in ru.nikitat0.blackjack">Main</a></td>
+<tr id="i6" class="altColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/game/Game.html" title="class in ru.nikitat0.blackjack.game">Game</a></td>
 <th class="colLast" scope="row">
-<div class="block">Contains static method main.</div>
+<div class="block">A blackjack game.</div>
 </th>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i7" class="rowColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/Main.html" title="class in ru.nikitat0.blackjack">Main</a></td>
+<th class="colLast" scope="row">
+<div class="block">Contains game interface.</div>
+</th>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/game/PlayerController.html" title="interface in ru.nikitat0.blackjack.game">PlayerController</a></td>
+<th class="colLast" scope="row">
+<div class="block">An object responsible for interaction with player.</div>
+</th>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/game/PlayerController.Cause.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Cause</a></td>
+<th class="colLast" scope="row">
+<div class="block">Why someone winned?</div>
+</th>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/game/PlayerController.Side.html" title="enum in ru.nikitat0.blackjack.game">PlayerController.Side</a></td>
+<th class="colLast" scope="row">
+<div class="block">Eiether player or dealer.</div>
+</th>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><a href="ru/nikitat0/blackjack/cards/Rank.html" title="enum in ru.nikitat0.blackjack.cards">Rank</a></td>
 <th class="colLast" scope="row">
 <div class="block">A card rank.</div>
 </th>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i12" class="altColor">
+<td class="colFirst"><a href="ru/nikitat0/blackjack/game/Score.html" title="class in ru.nikitat0.blackjack.game">Score</a></td>
+<th class="colLast" scope="row">
+<div class="block">A score in a game.</div>
+</th>
+</tr>
+<tr id="i13" class="rowColor">
 <td class="colFirst"><a href="ru/nikitat0/blackjack/cards/Suit.html" title="enum in ru.nikitat0.blackjack.cards">Suit</a></td>
 <th class="colLast" scope="row">
 <div class="block">A card suit.</div>
