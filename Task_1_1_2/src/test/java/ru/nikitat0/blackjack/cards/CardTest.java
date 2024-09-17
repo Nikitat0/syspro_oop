@@ -1,5 +1,6 @@
 package ru.nikitat0.blackjack.cards;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -71,8 +72,46 @@ class CardTest {
         cards.add(ace);
         Assertions.assertTrue(cards.isBlackjack());
         Assertions.assertEquals(21, cards.points());
+        Assertions.assertEquals(11, cards.acePoints());
         cards.add(ace);
         Assertions.assertFalse(cards.isBlackjack());
         Assertions.assertEquals(12, cards.points());
+        Assertions.assertEquals(1, cards.acePoints());
+
+        List<Card> cardList = cards.asList();
+        Assertions.assertEquals(jack, cardList.get(0));
+        Assertions.assertEquals(ace, cardList.get(1));
+        Assertions.assertEquals(ace, cardList.get(2));
+    }
+
+    @Test
+    void testCardView() {
+        Assertions.assertTrue(CardView.CLOSED_CARD.see(new CardViewer<Boolean>() {
+            @Override
+            public Boolean cardWithPoints(Card card, int points) {
+                return false;
+            }
+
+            @Override
+            public Boolean closedCard() {
+                return true;
+            }
+        }));
+
+        Card card = new Card(Suit.CLUBS, Rank.JACK);
+        Assertions.assertEquals(card.rank.points, new CardView.CardWithPoints(card).points);
+        Assertions.assertTrue(new CardView.CardWithPoints(card, 0).see(new CardViewer<Boolean>() {
+            @Override
+            public Boolean cardWithPoints(Card actualCard, int actualPoints) {
+                Assertions.assertEquals(card, actualCard);
+                Assertions.assertEquals(0, actualPoints);
+                return true;
+            }
+
+            @Override
+            public Boolean closedCard() {
+                return false;
+            }
+        }));
     }
 }
