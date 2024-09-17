@@ -39,7 +39,7 @@ public final class Deck {
 
     /**
      * Picks a card from this deck.
-     * 
+     *
      * @return card lying on top
      *
      * @throws NoSuchElementException if deck is empty

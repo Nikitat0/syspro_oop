@@ -7,11 +7,13 @@ import ru.nikitat0.blackjack.cards.Card;
  */
 public interface PlayerController {
     /**
+     *
      * @return true, if player is going to pick one more card
      */
     boolean doPickCard();
 
     /**
+     *
      * @return true, if player is going to play one more round
      */
     boolean doPlayNextRound();
@@ -26,8 +28,8 @@ public interface PlayerController {
     /**
      * Called when round ends.
      * 
-     * @param winner
-     * @param reason
+     * @param winner winner
+     * @param reason reason
      */
     void onRoundEnds(Side winner, Cause reason);
 
@@ -55,7 +57,7 @@ public interface PlayerController {
     }
 
     /**
-     * Why someone winned?
+     * Cause of round ending.
      */
     public static enum Cause {
         BLACKJACK,

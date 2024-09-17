@@ -7,9 +7,9 @@ public interface CardView {
     /**
      * Transforms the card to type specified by viewer.
      * 
-     * @param <T>
-     * @param viewer
-     * @return
+     * @param <T>    type of viewer representation
+     * @param viewer viewer
+     * @return viewer representation
      */
     <T> T see(CardViewer<T> viewer);
 
@@ -39,8 +39,8 @@ public interface CardView {
 
         /**
          * Constructs view with points card gives by itself.
-         * 
-         * @param card
+         *
+         * @param card card
          */
         public CardWithPoints(Card card) {
             this.card = card;
@@ -49,8 +49,9 @@ public interface CardView {
 
         /**
          * Constructs view with assigned points.
-         * 
-         * @param card
+         *
+         * @param card   card
+         * @param points points
          */
         public CardWithPoints(Card card, int points) {
             this.card = card;

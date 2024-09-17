@@ -15,6 +15,7 @@ public enum Suit {
      * Adjective used in name of queen card.
      */
     public final String masculineAdjective;
+
     /**
      * Adjective used in name of jack or king card.
      */

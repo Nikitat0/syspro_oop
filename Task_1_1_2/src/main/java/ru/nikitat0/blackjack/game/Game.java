@@ -135,7 +135,7 @@ public final class Game {
         /**
          * Shows player hand.
          * 
-         * @return
+         * @return player hand
          */
         public List<CardView> seePlayerHand() {
             return seeHand(playerHand);
@@ -144,7 +144,7 @@ public final class Game {
         /**
          * Shows dealer hand.
          * 
-         * @return
+         * @return dealer hand
          */
         public List<CardView> seeDealerHand() {
             if (!dealerTurn) {

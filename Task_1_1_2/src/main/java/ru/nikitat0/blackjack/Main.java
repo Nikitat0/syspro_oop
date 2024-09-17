@@ -1,5 +1,6 @@
 package ru.nikitat0.blackjack;
 
+import static java.lang.System.out;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -11,9 +12,7 @@ import ru.nikitat0.blackjack.game.Game.Round;
 import ru.nikitat0.blackjack.game.PlayerController;
 import ru.nikitat0.blackjack.game.Score;
 
-import static java.lang.System.out;
-
-/** Contains game interface. */
+/** The Main class is responsible for game cli. */
 public class Main implements PlayerController {
     /**
      * Identation pattern used in cli.

@@ -39,6 +39,8 @@ public enum Rank {
     }
 
     /**
+     * Formats name of this card.
+     *
      * @return name of card with this rank and given suit
      */
     public String cardName(Suit suit) {

@@ -30,6 +30,8 @@ public final class CardSet {
     }
 
     /**
+     * Adds card to this set.
+     *
      * @param card card to add
      */
     public void add(Card card) {
@@ -37,6 +39,8 @@ public final class CardSet {
     }
 
     /**
+     * Returns this set as list.
+     *
      * @return unmodifaible list representations of card set.
      */
     public List<Card> asList() {
@@ -45,7 +49,7 @@ public final class CardSet {
 
     /**
      * Counts points of this set of card by blackjack rules.
-     * 
+     *
      * @return number of points
      */
     public int points() {
@@ -59,7 +63,9 @@ public final class CardSet {
     }
 
     /**
-     * @return how many points each ace give in this set
+     * Calculates points given by each ace in this set.
+     *
+     * @return how many points each ace give
      */
     public int acePoints() {
         int points = 0;
@@ -70,6 +76,8 @@ public final class CardSet {
     }
 
     /**
+     * Returns true if this set is blackjack.
+     *
      * @return true, if there is two cards with a total of 21 points
      */
     public boolean isBlackjack() {
