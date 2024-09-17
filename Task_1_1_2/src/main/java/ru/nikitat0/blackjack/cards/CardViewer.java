@@ -3,7 +3,7 @@ package ru.nikitat0.blackjack.cards;
 /**
  * An entity seeing the card.
  *
- * @param <T>
+ * @param <T> type of viewer representation
  */
 public interface CardViewer<T> {
     /**

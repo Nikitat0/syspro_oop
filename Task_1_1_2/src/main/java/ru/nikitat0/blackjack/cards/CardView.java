@@ -6,7 +6,7 @@ package ru.nikitat0.blackjack.cards;
 public interface CardView {
     /**
      * Transforms the card to type specified by viewer.
-     * 
+     *
      * @param <T>    type of viewer representation
      * @param viewer viewer
      * @return viewer representation

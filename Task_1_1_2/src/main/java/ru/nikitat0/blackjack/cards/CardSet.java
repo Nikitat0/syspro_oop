@@ -19,7 +19,7 @@ public final class CardSet {
 
     /**
      * Constructs a set of two given cards.
-     * 
+     *
      * @param a first card
      * @param b second card
      */

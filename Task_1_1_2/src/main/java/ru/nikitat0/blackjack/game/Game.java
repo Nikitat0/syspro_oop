@@ -1,12 +1,13 @@
 package ru.nikitat0.blackjack.game;
 
+import static ru.nikitat0.blackjack.cards.CardView.CLOSED_CARD;
+
 import java.util.ArrayList;
 import java.util.List;
 import ru.nikitat0.blackjack.cards.Card;
 import ru.nikitat0.blackjack.cards.CardSet;
 import ru.nikitat0.blackjack.cards.CardView;
 import ru.nikitat0.blackjack.cards.CardView.CardWithPoints;
-import static ru.nikitat0.blackjack.cards.CardView.CLOSED_CARD;
 import ru.nikitat0.blackjack.cards.Deck;
 import ru.nikitat0.blackjack.cards.Rank;
 import ru.nikitat0.blackjack.game.PlayerController.Cause;
@@ -146,7 +147,7 @@ public final class Game {
 
         /**
          * Shows dealer hand.
-         * 
+         *
          * @return dealer hand
          */
         public List<CardView> seeDealerHand() {
