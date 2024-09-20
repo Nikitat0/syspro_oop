@@ -18,15 +18,17 @@ import ru.nikitat0.blackjack.game.PlayerController.Side;
  */
 public final class Game {
     private Score score = new Score();
-    private PlayerController playerController;
+    private final PlayerController playerController;
+    private final DeckProvider deckProvider;
 
     /**
      * Constructs new game.
      *
      * @param playerController player controller
      */
-    public Game(PlayerController playerController) {
+    public Game(PlayerController playerController, DeckProvider deckProvider) {
         this.playerController = playerController;
+        this.deckProvider = deckProvider;
     }
 
     /**
@@ -76,8 +78,7 @@ public final class Game {
         private boolean dealerTurn = false;
 
         private Round() {
-            deck = new Deck();
-            deck.shuffle();
+            deck = deckProvider.obtainDeck();
             playerHand = new CardSet(deck.pick(), deck.pick());
             dealerHand = new CardSet(deck.pick(), deck.pick());
         }

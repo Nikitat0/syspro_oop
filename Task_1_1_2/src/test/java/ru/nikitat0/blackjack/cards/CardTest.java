@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.nikitat0.blackjack.cards.Deck.Deck52;
 
 class CardTest {
     static void assertStringEquals(Object o1, Object o2) {
@@ -35,12 +36,13 @@ class CardTest {
     }
 
     @Test
-    void testDeck() {
-        Deck deck = new Deck();
+    void testDeck52() {
+        Deck52 deck = new Deck52();
         for (int i = 0; i < 52; i++) {
+            Assertions.assertFalse(deck.isEmpty());
             deck.pick();
         }
-        Assertions.assertThrows(NoSuchElementException.class, () -> deck.pick());
+        Assertions.assertTrue(deck.isEmpty());
     }
 
     @Test

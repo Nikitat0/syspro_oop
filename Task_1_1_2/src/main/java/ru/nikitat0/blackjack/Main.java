@@ -8,6 +8,9 @@ import java.util.Scanner;
 import ru.nikitat0.blackjack.cards.Card;
 import ru.nikitat0.blackjack.cards.CardView;
 import ru.nikitat0.blackjack.cards.CardViewer;
+import ru.nikitat0.blackjack.cards.Deck;
+import ru.nikitat0.blackjack.cards.Deck.Deck52;
+import ru.nikitat0.blackjack.game.DeckProvider;
 import ru.nikitat0.blackjack.game.Game;
 import ru.nikitat0.blackjack.game.Game.Round;
 import ru.nikitat0.blackjack.game.PlayerController;
@@ -35,10 +38,16 @@ public class Main implements PlayerController {
     }
 
     private final Scanner scanner = new Scanner(System.in);
-    private final Game game = new Game(this);
+    private final Game game;
     private Round round = null;
 
     private Main() {
+        this.game = new Game(this, new DeckProvider() {
+            @Override
+            public Deck obtainDeck() {
+                return new Deck52();
+            }
+        });
     }
 
     private void play() {
