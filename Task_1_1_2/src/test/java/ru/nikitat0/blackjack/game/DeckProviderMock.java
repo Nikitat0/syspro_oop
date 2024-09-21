@@ -9,7 +9,7 @@ class DeckProviderMock implements DeckProvider {
     Deque<DeckMock> decks = new ArrayDeque<>();
 
     DeckProviderMock addDeck(Card... cards) {
-        decks.push(new DeckMock(cards));
+        decks.add(new DeckMock(cards));
         return this;
     }
 
@@ -29,7 +29,7 @@ class DeckProviderMock implements DeckProvider {
 
         @Override
         public Card pick() {
-            return cards.pop();
+            return cards.remove();
         }
 
         @Override

@@ -25,6 +25,13 @@ class PlayerMock implements PlayerController, EventListener {
         }
     };
 
+    static final Step CONTINUE = new Step() {
+        @Override
+        public boolean doPlayNextRound() {
+            return true;
+        }
+    };
+
     static final Step DO_NOT_CONTINUE = new Step() {
         @Override
         public boolean doPlayNextRound() {
@@ -85,7 +92,7 @@ class PlayerMock implements PlayerController, EventListener {
 
         @Override
         public void onRoundEnds(Side winner, Cause reason) {
-            Assertions.fail("unexpected RoundBegin event");
+            Assertions.fail("unexpected RoundEnds event");
         }
 
         @Override

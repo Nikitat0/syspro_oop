@@ -1,7 +1,6 @@
 package ru.nikitat0.blackjack.cards;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nikitat0.blackjack.cards.Deck.Deck52;
