@@ -14,7 +14,13 @@ public final class Card {
      */
     public final Rank rank;
 
-    Card(Suit suit, Rank rank) {
+    /**
+     * Constructs a card.
+     *
+     * @param suit suit
+     * @param rank rank
+     */
+    public Card(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
     }
