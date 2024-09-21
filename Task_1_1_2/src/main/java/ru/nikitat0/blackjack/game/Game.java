@@ -32,7 +32,7 @@ public final class Game {
 
     /**
      * Subscribes listener on game events.
-     * 
+     *
      * @param listener listener to subscribe
      */
     public void subscribe(EventListener listener) {
@@ -170,6 +170,9 @@ public final class Game {
         }
     }
 
+    /**
+     * An object that can listen game events.
+     */
     public static interface EventListener {
         /**
          * Called when round begins.

@@ -12,9 +12,9 @@ import ru.nikitat0.blackjack.cards.Deck;
 import ru.nikitat0.blackjack.cards.Deck.Deck52;
 import ru.nikitat0.blackjack.game.DeckProvider;
 import ru.nikitat0.blackjack.game.Game;
-import ru.nikitat0.blackjack.game.Game.Side;
 import ru.nikitat0.blackjack.game.Game.Cause;
 import ru.nikitat0.blackjack.game.Game.Round;
+import ru.nikitat0.blackjack.game.Game.Side;
 import ru.nikitat0.blackjack.game.Score;
 
 /** The Main class is responsible for game cli. */

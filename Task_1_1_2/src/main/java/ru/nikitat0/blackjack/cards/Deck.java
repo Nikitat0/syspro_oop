@@ -12,14 +12,14 @@ import java.util.Random;
 public interface Deck {
     /**
      * Picks a card.
-     * 
+     *
      * @return picked card
      */
     Card pick();
 
     /**
      * Returns true if there is no more cards.
-     * 
+     *
      * @return true if there is no more cards
      */
     boolean isEmpty();
@@ -51,7 +51,7 @@ public interface Deck {
 
         /**
          * Constructs new randomly shuffled deck.
-         * 
+         *
          * @param rand the source of randomness
          */
         public Deck52(Random rand) {
@@ -61,7 +61,7 @@ public interface Deck {
 
         /**
          * Shuffles this deck.
-         * 
+         *
          * @param rand the source of randomness
          */
         public void shuffle(Random rand) {
