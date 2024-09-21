@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var data = {"i0":6,"i1":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -88,15 +88,15 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
@@ -116,47 +116,44 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ru.nikitat0.blackjack.cards</a></div>
-<h2 title="Class Deck" class="title">Class Deck</h2>
+<h2 title="Interface Deck" class="title">Interface Deck</h2>
 </div>
 <div class="contentContainer">
-<ul class="inheritance">
-<li>java.lang.Object</li>
-<li>
-<ul class="inheritance">
-<li>ru.nikitat0.blackjack.cards.Deck</li>
-</ul>
-</li>
-</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Known Implementing Classes:</dt>
+<dd><code><a href="Deck.Deck52.html" title="class in ru.nikitat0.blackjack.cards">Deck.Deck52</a></code></dd>
+</dl>
 <hr>
-<pre>public final class <span class="typeNameLabel">Deck</span>
-extends java.lang.Object</pre>
-<div class="block">A 52-card deck.</div>
+<pre>public interface <span class="typeNameLabel">Deck</span></pre>
+<div class="block">A playing deck.</div>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<!-- ======== NESTED CLASS SUMMARY ======== -->
 <section>
 <ul class="blockList">
-<li class="blockList"><a id="constructor.summary">
+<li class="blockList"><a id="nested.class.summary">
 <!--   -->
 </a>
-<h3>Constructor Summary</h3>
+<h3>Nested Class Summary</h3>
 <table class="memberSummary">
-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colFirst" scope="col">Constructor</th>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Interface</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Deck</a></span>()</code></th>
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Deck.Deck52.html" title="class in ru.nikitat0.blackjack.cards">Deck.Deck52</a></span></code></th>
 <td class="colLast">
-<div class="block">Creates new (unshuffled) deck.</div>
+<div class="block">A standart playing deck constisting of 52 cards.</div>
 </td>
 </tr>
 </table>
@@ -171,34 +168,27 @@ extends java.lang.Object</pre>
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="Card.html" title="class in ru.nikitat0.blackjack.cards">Card</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pick()">pick</a></span>()</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Picks a card from this deck.</div>
+<div class="block">Returns true if there is no more cards.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shuffle()">shuffle</a></span>()</code></th>
+<td class="colFirst"><code><a href="Card.html" title="class in ru.nikitat0.blackjack.cards">Card</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pick()">pick</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Shuffles this deck.</div>
+<div class="block">Picks a card.</div>
 </td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
-</ul>
 </li>
 </ul>
 </section>
@@ -208,26 +198,6 @@ extends java.lang.Object</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<section>
-<ul class="blockList">
-<li class="blockList"><a id="constructor.detail">
-<!--   -->
-</a>
-<h3>Constructor Detail</h3>
-<a id="&lt;init&gt;()">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>Deck</h4>
-<pre>public&nbsp;Deck()</pre>
-<div class="block">Creates new (unshuffled) deck.</div>
-</li>
-</ul>
-</li>
-</ul>
-</section>
 <!-- ============ METHOD DETAIL ========== -->
 <section>
 <ul class="blockList">
@@ -235,29 +205,31 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="shuffle()">
+<a id="pick()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>shuffle</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;shuffle()</pre>
-<div class="block">Shuffles this deck.</div>
+<h4>pick</h4>
+<pre class="methodSignature"><a href="Card.html" title="class in ru.nikitat0.blackjack.cards">Card</a>&nbsp;pick()</pre>
+<div class="block">Picks a card.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>picked card</dd>
+</dl>
 </li>
 </ul>
-<a id="pick()">
+<a id="isEmpty()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>pick</h4>
-<pre class="methodSignature">public&nbsp;<a href="Card.html" title="class in ru.nikitat0.blackjack.cards">Card</a>&nbsp;pick()</pre>
-<div class="block">Picks a card from this deck.</div>
+<h4>isEmpty</h4>
+<pre class="methodSignature">boolean&nbsp;isEmpty()</pre>
+<div class="block">Returns true if there is no more cards.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>card lying on top</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.util.NoSuchElementException</code> - if deck is empty</dd>
+<dd>true if there is no more cards</dd>
 </dl>
 </li>
 </ul>
@@ -312,15 +284,15 @@ extends java.lang.Object</pre>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
