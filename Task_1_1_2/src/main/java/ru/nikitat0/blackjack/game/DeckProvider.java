@@ -9,7 +9,7 @@ import ru.nikitat0.blackjack.cards.Deck;
 public interface DeckProvider {
     /**
      * Obtains new deck.
-     * 
+     *
      * @return new deck
      */
     Deck obtainDeck();
