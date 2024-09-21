@@ -12,12 +12,13 @@ import ru.nikitat0.blackjack.cards.Deck;
 import ru.nikitat0.blackjack.cards.Deck.Deck52;
 import ru.nikitat0.blackjack.game.DeckProvider;
 import ru.nikitat0.blackjack.game.Game;
+import ru.nikitat0.blackjack.game.Game.Side;
+import ru.nikitat0.blackjack.game.Game.Cause;
 import ru.nikitat0.blackjack.game.Game.Round;
-import ru.nikitat0.blackjack.game.PlayerController;
 import ru.nikitat0.blackjack.game.Score;
 
 /** The Main class is responsible for game cli. */
-public class Main implements PlayerController {
+public class Main implements Game.PlayerController, Game.EventListener {
     /**
      * Identation pattern used in cli.
      */
@@ -42,12 +43,13 @@ public class Main implements PlayerController {
     private Round round = null;
 
     private Main() {
-        this.game = new Game(this, new DeckProvider() {
+        game = new Game(this, new DeckProvider() {
             @Override
             public Deck obtainDeck() {
                 return new Deck52();
             }
         });
+        game.subscribe(this);
     }
 
     private void play() {

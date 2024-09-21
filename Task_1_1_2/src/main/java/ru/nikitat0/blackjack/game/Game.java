@@ -10,8 +10,6 @@ import ru.nikitat0.blackjack.cards.CardView;
 import ru.nikitat0.blackjack.cards.CardView.CardWithPoints;
 import ru.nikitat0.blackjack.cards.Deck;
 import ru.nikitat0.blackjack.cards.Rank;
-import ru.nikitat0.blackjack.game.PlayerController.Cause;
-import ru.nikitat0.blackjack.game.PlayerController.Side;
 
 /**
  * A blackjack game.
@@ -20,6 +18,7 @@ public final class Game {
     private Score score = new Score();
     private final PlayerController playerController;
     private final DeckProvider deckProvider;
+    private final EventBus eventBus = new EventBus();
 
     /**
      * Constructs new game.
@@ -29,6 +28,15 @@ public final class Game {
     public Game(PlayerController playerController, DeckProvider deckProvider) {
         this.playerController = playerController;
         this.deckProvider = deckProvider;
+    }
+
+    /**
+     * Subscribes listener on game events.
+     * 
+     * @param listener listener to subscribe
+     */
+    public void subscribe(EventListener listener) {
+        eventBus.subscribe(listener);
     }
 
     /**
@@ -84,36 +92,36 @@ public final class Game {
         }
 
         private void play() {
-            playerController.onRoundBegins(this);
+            eventBus.onRoundBegins(this);
             if (playerHand.isBlackjack()) {
                 playerWins();
-                playerController.onRoundEnds(Side.PLAYER, Cause.BLACKJACK);
+                eventBus.onRoundEnds(Side.PLAYER, Cause.BLACKJACK);
                 return;
             }
             while (playerController.doPickCard()) {
                 Card card = deck.pick();
                 playerHand.add(card);
-                playerController.onPick(Side.PLAYER, card);
+                eventBus.onPick(Side.PLAYER, card);
                 if (playerHand.points() > 21) {
                     dealerWins();
-                    playerController.onRoundEnds(Side.DEALER, Cause.BUST);
+                    eventBus.onRoundEnds(Side.DEALER, Cause.BUST);
                     return;
                 }
             }
             dealerTurn = true;
-            playerController.onDealerTurn(dealerHand.asList().get(1));
+            eventBus.onDealerTurn(dealerHand.asList().get(1));
             if (dealerHand.isBlackjack()) {
                 dealerWins();
-                playerController.onRoundEnds(Side.DEALER, Cause.BLACKJACK);
+                eventBus.onRoundEnds(Side.DEALER, Cause.BLACKJACK);
                 return;
             }
             while (dealerHand.points() < 17) {
                 Card card = deck.pick();
                 dealerHand.add(card);
-                playerController.onPick(Side.DEALER, card);
+                eventBus.onPick(Side.DEALER, card);
                 if (dealerHand.points() > 21) {
                     playerWins();
-                    playerController.onRoundEnds(Side.PLAYER, Cause.BUST);
+                    eventBus.onRoundEnds(Side.PLAYER, Cause.BUST);
                     return;
                 }
             }
@@ -125,7 +133,7 @@ public final class Game {
                 winner = Side.PLAYER;
                 playerWins();
             }
-            playerController.onRoundEnds(winner, Cause.HIGHER_SUM);
+            eventBus.onRoundEnds(winner, Cause.HIGHER_SUM);
         }
 
         /**
@@ -160,5 +168,73 @@ public final class Game {
             }
             return seeHand(dealerHand);
         }
+    }
+
+    public static interface EventListener {
+        /**
+         * Called when round begins.
+         *
+         * @param round rouns object
+         */
+        void onRoundBegins(Game.Round round);
+
+        /**
+         * Called when round ends.
+         *
+         * @param winner winner
+         * @param reason reason
+         */
+        void onRoundEnds(Side winner, Cause reason);
+
+        /**
+         * Called when someone pick a card.
+         *
+         * @param who  who picks
+         * @param card picked card
+         */
+        void onPick(Side who, Card card);
+
+        /**
+         * Called when dealer turn begins.
+         *
+         * @param card card opened by dealer
+         */
+        void onDealerTurn(Card card);
+    }
+
+    /**
+     * An object responsible for interaction with player.
+     */
+    public interface PlayerController {
+        /**
+         * Asks player about picking card.
+         *
+         * @return true, if player is going to pick one more card
+         */
+        boolean doPickCard();
+
+        /**
+         * Asks player about next round.
+         *
+         * @return true, if player is going to play one more round
+         */
+        boolean doPlayNextRound();
+    }
+
+    /**
+     * Eiether player or dealer.
+     */
+    public static enum Side {
+        PLAYER,
+        DEALER;
+    }
+
+    /**
+     * Cause of round ending.
+     */
+    public static enum Cause {
+        BLACKJACK,
+        BUST,
+        HIGHER_SUM,
     }
 }
