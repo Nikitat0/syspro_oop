@@ -35,6 +35,7 @@ class ExpressionsTest {
     @Test
     void testToString() {
         Assertions.assertEquals("23126", parse("23126").toString());
+        Assertions.assertEquals("(-23126)", new Number(-23126).toString());
         Assertions.assertEquals("var", parse("var").toString());
         Assertions.assertEquals("(1+2)", parse("1+2").toString());
         Assertions.assertEquals("(3-4)", parse("3-4").toString());
