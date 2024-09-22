@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Test;
 class LexerTest {
     private static final String SRC = "two words 0 23126 + - * / = ;";
     private static final Token[] TOKENS = new Token[] {
-            new Token.Word("two"),
-            new Token.Word("words"),
-            new Token.Number(0),
-            new Token.Number(23126),
-            Token.PLUS,
-            Token.MINUS,
-            Token.MUL,
-            Token.DIV,
-            Token.EQUAL,
-            Token.SEMICOLON,
-            Token.END,
+        new Token.Word("two"),
+        new Token.Word("words"),
+        new Token.Number(0),
+        new Token.Number(23126),
+        Token.PLUS,
+        Token.MINUS,
+        Token.MUL,
+        Token.DIV,
+        Token.EQUAL,
+        Token.SEMICOLON,
+        Token.END,
     };
 
     @Test
