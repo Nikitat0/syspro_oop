@@ -4,6 +4,7 @@ import static java.lang.System.out;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import ru.nikitat0.blackjack.cards.Card;
 import ru.nikitat0.blackjack.cards.CardView;
@@ -43,10 +44,11 @@ public class Main implements Game.PlayerController, Game.EventListener {
     private Round round = null;
 
     private Main() {
+        Random rand = new Random();
         game = new Game(this, new DeckProvider() {
             @Override
             public Deck obtainDeck() {
-                return new Deck52();
+                return new Deck52(rand);
             }
         });
         game.subscribe(this);
