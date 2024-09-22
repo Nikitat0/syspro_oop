@@ -30,8 +30,8 @@ public abstract class BinaryExpression extends Expression {
     @Override
     public boolean equals(Object o) {
         if (this.getClass() == o.getClass()) {
-            BinaryExpression oBinExpr = (BinaryExpression) o;
-            return oBinExpr.lhs.equals(this.lhs) && oBinExpr.rhs.equals(this.rhs);
+            BinaryExpression otherBinExpr = (BinaryExpression) o;
+            return otherBinExpr.lhs.equals(this.lhs) && otherBinExpr.rhs.equals(this.rhs);
         }
         return false;
     }

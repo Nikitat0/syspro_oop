@@ -79,21 +79,21 @@ public abstract class Expression {
     /**
      * Fully evaluates expression.
      *
-     * @param values semicolon-separated list of variable assignments
+     * @param assignments semicolon-separated list of variable assignments
      * @return result of evaluation
      */
-    public int eval(String values) {
-        return eval(parseAssigments(values));
+    public int eval(String assignments) {
+        return eval(parseAssigments(assignments));
     }
 
     /**
      * Fully evaluates expression.
      *
-     * @param values variable->value mapping
+     * @param assignments map of variable assignments
      * @return result of evaluation
      */
-    public int eval(Map<String, Integer> values) {
-        Expression evaluated = partialEval(values);
+    public int eval(Map<String, Integer> assignments) {
+        Expression evaluated = partialEval(assignments);
         if (evaluated instanceof Number) {
             return ((Number) evaluated).value;
         } else {
@@ -105,20 +105,20 @@ public abstract class Expression {
     /**
      * Partial evaluates expression.
      *
-     * @param values semicolon-separated list of variable assignments
+     * @param assignments semicolon-separated list of variable assignments
      * @return result of evaluation
      */
-    public Expression partialEval(String values) {
-        return partialEval(parseAssigments(values));
+    public Expression partialEval(String assignments) {
+        return partialEval(parseAssigments(assignments));
     }
 
     /**
      * Partially evaluates expression.
      *
-     * @param values variable->value mapping
+     * @param assignments map of variable assignments
      * @return result of evaluation
      */
-    public Expression partialEval(Map<String, Integer> values) {
+    public Expression partialEval(Map<String, Integer> assignments) {
         return this;
     }
 
@@ -145,58 +145,58 @@ public abstract class Expression {
     public Expression simplify() {
         return partialEval(Collections.emptyMap());
     }
-}
 
-final class ArithmeticalParser {
-    private final Deque<Expression> operands = new ArrayDeque<>();
-    private final Deque<Token> operations = new ArrayDeque<>();
+    static final class ArithmeticalParser {
+        private final Deque<Expression> operands = new ArrayDeque<>();
+        private final Deque<Token> operations = new ArrayDeque<>();
 
-    private static int priority(Token token) {
-        if (token == Token.PLUS || token == Token.MINUS) {
-            return 1;
-        } else if (token == Token.MUL || token == Token.DIV) {
-            return 2;
-        } else {
-            return 0;
+        private static int priority(Token token) {
+            if (token == Token.PLUS || token == Token.MINUS) {
+                return 1;
+            } else if (token == Token.MUL || token == Token.DIV) {
+                return 2;
+            } else {
+                return 0;
+            }
         }
-    }
 
-    private static Expression binaryOperation(Token op, Expression lhs, Expression rhs) {
-        if (op == Token.PLUS) {
-            return new Add(lhs, rhs);
-        } else if (op == Token.MINUS) {
-            return new Sub(lhs, rhs);
-        } else if (op == Token.MUL) {
-            return new Mul(lhs, rhs);
-        } else if (op == Token.DIV) {
-            return new Div(lhs, rhs);
-        } else {
-            String msg = String.format("token %s doesn't represent a binary operation", op);
-            throw new RuntimeException(msg);
+        private static Expression binaryOperation(Token op, Expression lhs, Expression rhs) {
+            if (op == Token.PLUS) {
+                return new Add(lhs, rhs);
+            } else if (op == Token.MINUS) {
+                return new Sub(lhs, rhs);
+            } else if (op == Token.MUL) {
+                return new Mul(lhs, rhs);
+            } else if (op == Token.DIV) {
+                return new Div(lhs, rhs);
+            } else {
+                String msg = String.format("token %s doesn't represent a binary operation", op);
+                throw new RuntimeException(msg);
+            }
         }
-    }
 
-    private void apply(Token op) {
-        Expression rhs = operands.pop();
-        Expression lhs = operands.pop();
-        operands.push(binaryOperation(op, lhs, rhs));
-    }
-
-    void pushOperand(Expression operand) {
-        operands.push(operand);
-    }
-
-    void pushOperation(Token op) {
-        while (!operations.isEmpty() && priority(operations.peek()) >= priority(op)) {
-            apply(operations.pop());
+        private void apply(Token op) {
+            Expression rhs = operands.pop();
+            Expression lhs = operands.pop();
+            operands.push(binaryOperation(op, lhs, rhs));
         }
-        operations.push(op);
-    }
 
-    Expression output() {
-        while (!operations.isEmpty()) {
-            apply(operations.pop());
+        void pushOperand(Expression operand) {
+            operands.push(operand);
         }
-        return operands.pop();
+
+        void pushOperation(Token op) {
+            while (!operations.isEmpty() && priority(operations.peek()) >= priority(op)) {
+                apply(operations.pop());
+            }
+            operations.push(op);
+        }
+
+        Expression output() {
+            while (!operations.isEmpty()) {
+                apply(operations.pop());
+            }
+            return operands.pop();
+        }
     }
 }

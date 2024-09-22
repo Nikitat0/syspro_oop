@@ -10,7 +10,7 @@ public class Main {
      *
      * @param args command line arguments
      */
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             ask("Enter expression: ");
             Expression expr = Expression.parse(scanner.nextLine());

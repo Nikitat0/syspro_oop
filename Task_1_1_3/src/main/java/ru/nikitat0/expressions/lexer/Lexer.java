@@ -26,7 +26,6 @@ public final class Lexer {
      * @return the next token
      */
     public Token next() {
-        char c;
         while (pos < src.length() && Character.isSpaceChar(src.charAt(pos))) {
             pos++;
         }
@@ -34,7 +33,7 @@ public final class Lexer {
         if (pos == src.length()) {
             return Token.END;
         }
-        c = src.charAt(pos);
+        char c = src.charAt(pos);
         if (Character.isDigit(c)) {
             return new Token.Number(readNumber());
         }
@@ -115,7 +114,10 @@ public final class Lexer {
         return new RuntimeException(String.format("unexpected char '%c' at pos %d", c, pos));
     }
 
-    private static RuntimeException unexpectedTokenException(Token actual, Token[] expected, int pos) {
+    private static RuntimeException unexpectedTokenException(
+            Token actual,
+            Token[] expected,
+            int pos) {
         boolean single = expected.length == 1;
         String msg = String.format(
                 "Expected token%s %s; actual: %s at pos %d",

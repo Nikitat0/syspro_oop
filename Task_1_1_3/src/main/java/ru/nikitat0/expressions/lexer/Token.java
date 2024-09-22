@@ -77,10 +77,10 @@ public abstract class Token {
         /**
          * Constucts a new number token.
          *
-         * @param the number for this token
+         * @param num the number for this token
          */
-        public Number(int value) {
-            this.num = value;
+        public Number(int num) {
+            this.num = num;
         }
 
         @Override
