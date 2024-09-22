@@ -125,7 +125,7 @@ public abstract class Token {
         @Override
         public boolean equals(Object o) {
             if (o instanceof Word) {
-                return ((Word) o).word == this.word;
+                return ((Word) o).word.equals(this.word);
             }
             return o == WORD;
         }

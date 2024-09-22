@@ -33,6 +33,16 @@ class ExpressionsTest {
     }
 
     @Test
+    void testToString() {
+        Assertions.assertEquals("23126", parse("23126").toString());
+        Assertions.assertEquals("var", parse("var").toString());
+        Assertions.assertEquals("(1+2)", parse("1+2").toString());
+        Assertions.assertEquals("(3-4)", parse("3-4").toString());
+        Assertions.assertEquals("(5*6)", parse("5*6").toString());
+        Assertions.assertEquals("(7/7)", parse("7/7").toString());
+    }
+
+    @Test
     void testDerivative() {
         Assertions.assertEquals(parse("0"), parse("23126").derivative("x"));
         Assertions.assertEquals(parse("1"), parse("a").derivative("a"));
@@ -46,7 +56,12 @@ class ExpressionsTest {
 
     @Test
     void testSimplify() {
+        Assertions.assertEquals(parse("18"), parse("15+3").simplify());
+        Assertions.assertEquals(parse("12"), parse("15-3").simplify());
+        Assertions.assertEquals(parse("15"), parse("5*3").simplify());
+        Assertions.assertEquals(parse("5"), parse("15/3").simplify());
         Assertions.assertEquals(parse("6"), parse("2+2*2").simplify());
+
         Assertions.assertEquals(parse("0"), parse("0*x").simplify());
         Assertions.assertEquals(parse("0"), parse("2*0").simplify());
         Assertions.assertEquals(parse("x"), parse("1*x").simplify());

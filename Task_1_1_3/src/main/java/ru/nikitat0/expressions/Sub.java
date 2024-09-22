@@ -18,7 +18,7 @@ public final class Sub extends BinaryExpression {
 
     @Override
     protected String fmt() {
-        return "(%s+%s)";
+        return "(%s-%s)";
     }
 
     @Override

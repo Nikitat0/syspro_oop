@@ -79,12 +79,7 @@ public final class Lexer {
         return Integer.parseInt(src.substring(i, pos));
     }
 
-    /**
-     * Returns begging index of latest token.
-     *
-     * @return begging index of latest token
-     */
-    public int getLatestTokenPosition() {
+    private int getLatestTokenPosition() {
         return latestTokenPos;
     }
 

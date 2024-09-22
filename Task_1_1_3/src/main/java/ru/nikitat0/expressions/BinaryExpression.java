@@ -6,8 +6,15 @@ import java.util.Objects;
  * A binary expression.
  */
 public abstract class BinaryExpression extends Expression {
-    protected final Expression lhs;
-    protected final Expression rhs;
+    /**
+     * The left hand side operand.
+     */
+    public final Expression lhs;
+
+    /**
+     * The right hand side operand.
+     */
+    public final Expression rhs;
 
     /**
      * Constructs new binary expression.
