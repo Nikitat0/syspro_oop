@@ -22,7 +22,7 @@ public final class Variable extends Expression {
 
     @Override
     public Expression derivative(String varName) {
-        return varName == this.name ? Number.ONE : Number.ZERO;
+        return varName.equals(this.name) ? Number.ONE : Number.ZERO;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class Variable extends Expression {
     @Override
     public boolean equals(Object o) {
         if (o instanceof Variable) {
-            return ((Variable) o).name == this.name;
+            return ((Variable) o).name.equals(this.name);
         }
         return false;
     }

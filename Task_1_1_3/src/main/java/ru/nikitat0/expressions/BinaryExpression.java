@@ -31,7 +31,7 @@ public abstract class BinaryExpression extends Expression {
     public boolean equals(Object o) {
         if (this.getClass() == o.getClass()) {
             BinaryExpression oBinExpr = (BinaryExpression) o;
-            return oBinExpr.lhs == this.lhs && oBinExpr.rhs == this.rhs;
+            return oBinExpr.lhs.equals(this.lhs) && oBinExpr.rhs.equals(this.rhs);
         }
         return false;
     }

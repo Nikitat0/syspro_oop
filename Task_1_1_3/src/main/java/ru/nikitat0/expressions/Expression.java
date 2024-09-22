@@ -187,7 +187,7 @@ final class ArithmeticalParser {
     }
 
     void pushOperation(Token op) {
-        while (!operations.isEmpty() && priority(operations.peek()) > priority(op)) {
+        while (!operations.isEmpty() && priority(operations.peek()) >= priority(op)) {
             apply(operations.pop());
         }
         operations.push(op);
