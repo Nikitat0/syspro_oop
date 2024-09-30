@@ -33,6 +33,28 @@ class LexerTest {
     }
 
     @Test
+    void testInvalidCharacter() {
+        Lexer lex = new Lexer("!#@");
+        for (int i = 0; i < 3; i++) {
+            Assertions.assertThrows(RuntimeException.class, () -> lex.next());
+        }
+        // Lexer should be able to recover
+        Assertions.assertEquals(Token.END, lex.expect(Token.END));
+    }
+
+    @Test
+    void testUnexpectedToken() {
+        // Oops, someone uses Yoda notation out of place
+        Lexer lex = new Lexer("123 = var");
+        Assertions.assertThrows(RuntimeException.class, () -> lex.expect(Token.WORD));
+        // Lexer should be able to recover
+        Assertions.assertEquals(Token.EQUAL, lex.expect(Token.EQUAL));
+        Assertions.assertThrows(RuntimeException.class, () -> lex.expect(Token.NUMBER));
+        // Lexer should be able to recover
+        Assertions.assertEquals(Token.END, lex.expect(Token.END));
+    }
+
+    @Test
     void testExpect() {
         Lexer lex = new Lexer(SRC);
         int i = 0;
