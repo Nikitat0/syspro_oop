@@ -35,15 +35,6 @@ public abstract class BinaryExpression extends Expression {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this.getClass() == o.getClass()) {
-            BinaryExpression otherBinExpr = (BinaryExpression) o;
-            return otherBinExpr.lhs.equals(this.lhs) && otherBinExpr.rhs.equals(this.rhs);
-        }
-        return false;
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(fmt(), lhs, rhs);
     }

@@ -46,4 +46,13 @@ public final class Mul extends BinaryExpression {
         }
         return new Mul(lhs, rhs);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Mul) {
+            Mul otherMul = (Mul) o;
+            return this.lhs.equals(otherMul.lhs) && this.rhs.equals(otherMul.rhs);
+        }
+        return false;
+    }
 }

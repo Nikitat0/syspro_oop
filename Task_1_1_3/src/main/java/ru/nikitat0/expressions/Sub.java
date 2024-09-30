@@ -38,4 +38,13 @@ public final class Sub extends BinaryExpression {
         }
         return new Add(lhs, rhs);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Sub) {
+            Sub otherSub = (Sub) o;
+            return this.lhs.equals(otherSub.lhs) && this.rhs.equals(otherSub.rhs);
+        }
+        return false;
+    }
 }

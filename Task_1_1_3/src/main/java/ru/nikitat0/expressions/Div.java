@@ -42,4 +42,13 @@ public final class Div extends BinaryExpression {
         }
         return new Add(lhs, rhs);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Div) {
+            Div otherDiv = (Div) o;
+            return this.lhs.equals(otherDiv.lhs) && this.rhs.equals(otherDiv.rhs);
+        }
+        return false;
+    }
 }

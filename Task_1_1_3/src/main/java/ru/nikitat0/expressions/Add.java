@@ -33,4 +33,13 @@ public final class Add extends BinaryExpression {
         }
         return new Add(lhs, rhs);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Add) {
+            Add otherAdd = (Add) o;
+            return this.lhs.equals(otherAdd.lhs) && this.rhs.equals(otherAdd.rhs);
+        }
+        return false;
+    }
 }
