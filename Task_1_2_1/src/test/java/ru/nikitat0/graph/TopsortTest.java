@@ -3,14 +3,14 @@ package ru.nikitat0.graph;
 import static ru.nikitat0.graph.Topsort.topsort;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.BitSet;
 import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 // https://stackoverflow.com/a/16237354
-abstract class TopsortTestBase<T extends Graph> {
+abstract class TopsortTest<T extends Graph> {
     private static int GRAPH_SIZE = 20;
 
     protected abstract T newGraph();
@@ -44,7 +44,8 @@ abstract class TopsortTestBase<T extends Graph> {
         for (int i = 1; i < GRAPH_SIZE; i++) {
             graph.addEdge(vertices.get(i - 1), vertices.get(i));
             if (i + 1 < GRAPH_SIZE) {
-                graph.addEdge(vertices.get(i - 1), vertices.get(i + 1 + (i % (GRAPH_SIZE - i - 1))));
+                int wIdx = i + 1 + (i % (GRAPH_SIZE - i - 1));
+                graph.addEdge(vertices.get(i - 1), vertices.get(wIdx));
             }
         }
         Assertions.assertIterableEquals(vertices, topsort(graph));
@@ -76,18 +77,18 @@ abstract class TopsortTestBase<T extends Graph> {
             met.set(v);
         }
     }
-}
 
-class AdjacencyListTopsortTest extends TopsortTestBase<AdjacencyList> {
-    @Override
-    protected AdjacencyList newGraph() {
-        return new AdjacencyList();
+    static class AdjacencyListTopsortTest extends TopsortTest<AdjacencyList> {
+        @Override
+        protected AdjacencyList newGraph() {
+            return new AdjacencyList();
+        }
     }
-}
 
-class AdjacencyMatrixTopsortTest extends TopsortTestBase<AdjacencyMatrix> {
-    @Override
-    protected AdjacencyMatrix newGraph() {
-        return new AdjacencyMatrix();
+    static class AdjacencyMatrixTopsortTest extends TopsortTest<AdjacencyMatrix> {
+        @Override
+        protected AdjacencyMatrix newGraph() {
+            return new AdjacencyMatrix();
+        }
     }
 }
