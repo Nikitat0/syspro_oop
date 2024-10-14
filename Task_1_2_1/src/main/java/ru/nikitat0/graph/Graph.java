@@ -36,6 +36,9 @@ public interface Graph {
      *
      * @param u the identifier of the first vertex
      * @param v the identifier of the second vertex
+     *
+     * @throws IllegalArgumentException if either {@code u} or {@code v} doesn't
+     *                                  belongs to the graph
      */
     void addEdge(int u, int v);
 
@@ -44,6 +47,9 @@ public interface Graph {
      *
      * @param u the identifier of the first vertex
      * @param v the identifier of the second vertex
+     *
+     * @throws IllegalArgumentException if either {@code u} or {@code v} doesn't
+     *                                  belongs to the graph
      */
     void removeEdge(int u, int v);
 

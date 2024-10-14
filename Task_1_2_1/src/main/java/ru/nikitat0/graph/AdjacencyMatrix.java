@@ -39,6 +39,9 @@ public class AdjacencyMatrix implements Graph {
 
     @Override
     public void removeVertex(int u) {
+        if (!hasVertex(u)) {
+            throw new IllegalArgumentException("Cannot remove vertex: no such vertex");
+        }
         data.set(u, null);
         forEachVertex((int v) -> removeEdge(v, u));
         ids.storeId(u);
@@ -46,11 +49,17 @@ public class AdjacencyMatrix implements Graph {
 
     @Override
     public void addEdge(int u, int v) {
+        if (!hasVertex(u) || !hasVertex(v)) {
+            throw new IllegalArgumentException("Cannot add edge: no such vertices");
+        }
         data.get(u).set(v);
     }
 
     @Override
     public void removeEdge(int u, int v) {
+        if (!hasVertex(u) || !hasVertex(v)) {
+            throw new IllegalArgumentException("Cannot add edge: no such vertices");
+        }
         data.get(u).clear(v);
     }
 

@@ -17,6 +17,7 @@ public final class Topsort {
 
     /**
      * Returns a list of vertices in topological order for the given graph.
+     * DFS-based algorithm is used.
      *
      * @param graph the graph to be sorted
      * @return list of vertices in topological order
