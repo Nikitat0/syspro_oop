@@ -25,27 +25,27 @@ class IdentifiersCache {
     public void storeId(int id) {
         ids.push(id);
     }
-}
 
-class IntStack {
-    private int[] data = new int[8];
-    private int length = 0;
+    static class IntStack {
+        private int[] data = new int[8];
+        private int length = 0;
 
-    public void push(int e) {
-        if (length == data.length) {
-            data = Arrays.copyOf(data, data.length * 2);
+        public void push(int e) {
+            if (length == data.length) {
+                data = Arrays.copyOf(data, data.length * 2);
+            }
+            data[length++] = e;
         }
-        data[length++] = e;
-    }
 
-    public int pop() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
+        public int pop() {
+            if (isEmpty()) {
+                throw new EmptyStackException();
+            }
+            return data[--length];
         }
-        return data[--length];
-    }
 
-    public boolean isEmpty() {
-        return length == 0;
+        public boolean isEmpty() {
+            return length == 0;
+        }
     }
 }

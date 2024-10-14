@@ -44,8 +44,9 @@ abstract class TopsortTest<T extends Graph> {
         for (int i = 1; i < GRAPH_SIZE; i++) {
             graph.addEdge(vertices.get(i - 1), vertices.get(i));
             if (i + 1 < GRAPH_SIZE) {
-                int wIdx = i + 1 + (i % (GRAPH_SIZE - i - 1));
-                graph.addEdge(vertices.get(i - 1), vertices.get(wIdx));
+                graph.addEdge(
+                        vertices.get(i - 1),
+                        vertices.get(i + 1 + (i % (GRAPH_SIZE - i - 1))));
             }
         }
         Assertions.assertIterableEquals(vertices, topsort(graph));
