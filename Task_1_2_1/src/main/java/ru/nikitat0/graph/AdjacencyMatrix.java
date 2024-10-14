@@ -42,8 +42,8 @@ public class AdjacencyMatrix implements Graph {
         if (!hasVertex(u)) {
             throw new IllegalArgumentException("Cannot remove vertex: no such vertex");
         }
-        data.set(u, null);
         forEachVertex((int v) -> removeEdge(v, u));
+        data.set(u, null);
         ids.storeId(u);
     }
 

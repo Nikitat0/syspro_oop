@@ -30,8 +30,8 @@ public final class AdjacencyList implements Graph {
         if (!hasVertex(u)) {
             throw new IllegalArgumentException("Cannot remove vertex: no such vertex");
         }
-        data.set(u, null);
         forEachVertex((int v) -> removeEdge(v, u));
+        data.set(u, null);
         ids.storeId(u);
     }
 
@@ -48,7 +48,7 @@ public final class AdjacencyList implements Graph {
         if (!hasVertex(u) || !hasVertex(v)) {
             throw new IllegalArgumentException("Cannot add edge: no such vertices");
         }
-        data.get(u).remove(v);
+        data.get(u).remove((Integer) v);
     }
 
     @Override
