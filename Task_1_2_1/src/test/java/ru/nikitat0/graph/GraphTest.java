@@ -27,22 +27,22 @@ abstract class GraphTest<T extends Graph> {
         graph.addEdge(vertices.get(1), vertices.get(2));
         Assertions.assertIterableEquals(
                 Stream.of(vertices.get(1), vertices.get(2)).sorted().collect(Collectors.toList()),
-                adjacentToList(graph, vertices.get(0)));
+                graph.getAdjacentVertices(vertices.get(0)));
         Assertions.assertIterableEquals(
                 Stream.of(vertices.get(2)).sorted().collect(Collectors.toList()),
-                adjacentToList(graph, vertices.get(1)));
+                graph.getAdjacentVertices(vertices.get(1)));
 
         graph.removeVertex(vertices.pop());
         Assertions.assertEquals(vertices, verticesToList(graph));
         Assertions.assertIterableEquals(
                 Stream.of(vertices.get(1)).sorted().collect(Collectors.toList()),
-                adjacentToList(graph, vertices.get(0)));
-        Assertions.assertTrue(adjacentToList(graph, vertices.get(1)).isEmpty());
+                graph.getAdjacentVertices(vertices.get(0)));
+        Assertions.assertTrue(graph.getAdjacentVertices(vertices.get(1)).isEmpty());
 
         graph.removeEdge(vertices.get(0), vertices.get(1));
         Assertions.assertEquals(vertices, verticesToList(graph));
-        Assertions.assertTrue(adjacentToList(graph, vertices.get(0)).isEmpty());
-        Assertions.assertTrue(adjacentToList(graph, vertices.get(1)).isEmpty());
+        Assertions.assertTrue(graph.getAdjacentVertices(vertices.get(0)).isEmpty());
+        Assertions.assertTrue(graph.getAdjacentVertices(vertices.get(1)).isEmpty());
 
         for (int i = 0; i < 2; i++) {
             graph.removeVertex(vertices.pop());
@@ -63,13 +63,6 @@ abstract class GraphTest<T extends Graph> {
         graph.forEachVertex((int u) -> vertices.add(u));
         Collections.sort(vertices);
         return vertices;
-    }
-
-    private static List<Integer> adjacentToList(Graph graph, int u) {
-        ArrayList<Integer> adjacent = new ArrayList<>();
-        graph.forEachAdjacent(u, (int v) -> adjacent.add(v));
-        Collections.sort(adjacent);
-        return adjacent;
     }
 
     static class AdjacencyListTopsortTest extends GraphTest<AdjacencyList> {

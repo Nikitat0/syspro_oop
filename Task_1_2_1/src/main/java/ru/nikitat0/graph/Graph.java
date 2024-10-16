@@ -1,5 +1,7 @@
 package ru.nikitat0.graph;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.IntConsumer;
 
 /**
@@ -76,4 +78,17 @@ public interface Graph {
      * @param action the action to perform on each adjacent vertex
      */
     void forEachAdjacent(int u, IntConsumer action);
+
+    /**
+     * Returns a list of vertices adjacent to the given vertex.
+     *
+     * @param u the given vertex
+     * @return list of vertices adjacent to the given vertex
+     */
+    default List<Integer> getAdjacentVertices(int u) {
+        ArrayList<Integer> vertices = new ArrayList<>();
+        this.forEachAdjacent(u, (int v) -> vertices.add(v));
+        return vertices;
+    }
+
 }
