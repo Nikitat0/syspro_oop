@@ -92,4 +92,11 @@ abstract class TopsortTest<T extends Graph> {
             return new AdjacencyMatrix();
         }
     }
+
+    static class EdgeListTopsortTest extends TopsortTest<EdgeList> {
+        @Override
+        protected EdgeList newGraph() {
+            return new EdgeList();
+        }
+    }
 }
