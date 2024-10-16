@@ -46,7 +46,7 @@ public final class AdjacencyList implements Graph {
     @Override
     public void removeEdge(int u, int v) {
         if (!hasVertex(u) || !hasVertex(v)) {
-            throw new IllegalArgumentException("Cannot add edge: no such vertices");
+            throw new IllegalArgumentException("Cannot remove edge: no such vertices");
         }
         data.get(u).remove((Integer) v);
     }
