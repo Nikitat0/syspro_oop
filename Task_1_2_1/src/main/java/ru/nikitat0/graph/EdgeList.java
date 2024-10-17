@@ -1,9 +1,11 @@
 package ru.nikitat0.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.function.IntConsumer;
 
 /**
@@ -13,6 +15,31 @@ public class EdgeList implements Graph {
     private final List<Edge> edges = new ArrayList<>();
     private final BitSet vertices = new BitSet();
     private final IdentifiersCache ids = new IdentifiersCache();
+
+    /**
+     * Loads a graph from the next format: first line contains whitespace-sepatated
+     * list of vertices indentifiers, next lines contain list of edges.
+     *
+     * @param readable source
+     * @return loaded graph
+     */
+    public static EdgeList load(Readable readable) {
+        EdgeList graph = new EdgeList();
+        try (Scanner lineSc = new Scanner(readable)) {
+            if (!lineSc.hasNextLine()) {
+                return graph;
+            }
+            Arrays.stream(lineSc.nextLine().split("\\s+"))
+                    .filter((String s) -> !s.isEmpty())
+                    .map(Integer::valueOf)
+                    .forEach((Integer u) -> graph.vertices.set(u));
+            while (lineSc.hasNextLine()) {
+                Scanner sc = new Scanner(lineSc.nextLine());
+                graph.addEdge(sc.nextInt(), sc.nextInt());
+            }
+        }
+        return graph;
+    }
 
     @Override
     public int addVertex() {

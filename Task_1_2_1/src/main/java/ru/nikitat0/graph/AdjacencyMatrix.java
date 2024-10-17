@@ -1,8 +1,13 @@
 package ru.nikitat0.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 import java.util.function.IntConsumer;
+import java.util.stream.Collectors;
 
 /**
  * A graph represented by adjacency matrix.
@@ -12,6 +17,39 @@ public class AdjacencyMatrix implements Graph {
 
     private IdentifiersCache ids = new IdentifiersCache();
     private ArrayList<BitSet> data;
+
+    /**
+     * Loads a graph from the next format: first line contains whitespace-sepatated
+     * list of vertices indentifiers, next lines contain list of edges.
+     *
+     * @param readable source
+     * @return loaded graph
+     */
+    public static AdjacencyMatrix load(Readable readable) {
+        AdjacencyMatrix graph = new AdjacencyMatrix();
+        try (Scanner lineSc = new Scanner(readable)) {
+            if (!lineSc.hasNextLine()) {
+                return graph;
+            }
+            List<Integer> vertices = Arrays.stream(lineSc.nextLine().split("\\s+"))
+                    .filter((String s) -> !s.isEmpty())
+                    .map(Integer::valueOf)
+                    .collect(Collectors.toList());
+            for (int i = 0; i <= Collections.max(vertices); i++) {
+                graph.data.add(null);
+            }
+            for (Integer u : vertices) {
+                graph.data.set(u, new BitSet());
+            }
+            for (Integer u : vertices) {
+                Arrays.stream(lineSc.nextLine().split("\\s+"))
+                        .filter((String s) -> !s.isEmpty())
+                        .map(Integer::valueOf)
+                        .forEach((Integer v) -> graph.addEdge(u, v));
+            }
+        }
+        return graph;
+    }
 
     public AdjacencyMatrix() {
         this(DEFAULT_CAPACITY);
