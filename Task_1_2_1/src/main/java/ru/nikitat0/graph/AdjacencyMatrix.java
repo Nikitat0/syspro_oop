@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * A graph represented by adjacency matrix.
  */
-public class AdjacencyMatrix implements Graph {
+public class AdjacencyMatrix extends AdjacencyBasedGraph {
     private static final int DEFAULT_CAPACITY = 128;
 
     private IdentifiersCache ids = new IdentifiersCache();
@@ -121,5 +121,22 @@ public class AdjacencyMatrix implements Graph {
         for (int v = bs.nextSetBit(0); v != -1; v = bs.nextSetBit(v + 1)) {
             action.accept(v);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof AdjacencyMatrix)) {
+            return false;
+        }
+        AdjacencyMatrix other = (AdjacencyMatrix) o;
+        int commonLen = Math.min(this.data.size(), other.data.size());
+        for (AdjacencyMatrix graph : new AdjacencyMatrix[] { this, other }) {
+            for (int i = commonLen; i < graph.data.size(); i++) {
+                if (graph.data.get(i) != null) {
+                    return false;
+                }
+            }
+        }
+        return this.data.subList(0, commonLen).equals(other.data.subList(0, commonLen));
     }
 }

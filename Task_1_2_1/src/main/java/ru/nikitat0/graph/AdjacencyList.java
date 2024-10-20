@@ -5,15 +5,17 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.IntConsumer;
 import java.util.stream.Collectors;
 
 /** A graph represented by adjacency list. */
-public final class AdjacencyList implements Graph {
+public final class AdjacencyList extends AdjacencyBasedGraph {
     private static final int DEFAULT_CAPACITY = 128;
 
     private IdentifiersCache ids = new IdentifiersCache();
-    private List<List<Integer>> data = new ArrayList<>();
+    private List<Set<Integer>> data = new ArrayList<>();
 
     /**
      * Loads a graph from the next format: first line contains whitespace-sepatated
@@ -36,7 +38,7 @@ public final class AdjacencyList implements Graph {
                 graph.data.add(null);
             }
             for (Integer u : vertices) {
-                graph.data.set(u, new ArrayList<>());
+                graph.data.set(u, new TreeSet<>());
             }
             for (Integer u : vertices) {
                 Arrays.stream(lineSc.nextLine().split("\\s+"))
@@ -60,9 +62,9 @@ public final class AdjacencyList implements Graph {
     public int addVertex() {
         int id = ids.nextId();
         if (data.size() == id) {
-            data.add(new ArrayList<>());
+            data.add(new TreeSet<>());
         } else {
-            data.set(id, new ArrayList<>());
+            data.set(id, new TreeSet<>());
         }
         return id;
     }
@@ -117,5 +119,22 @@ public final class AdjacencyList implements Graph {
         for (int v : data.get(u)) {
             action.accept(v);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof AdjacencyList)) {
+            return false;
+        }
+        AdjacencyList other = (AdjacencyList) o;
+        int commonLen = Math.min(this.data.size(), other.data.size());
+        for (AdjacencyList graph : new AdjacencyList[] { this, other }) {
+            for (int i = commonLen; i < graph.data.size(); i++) {
+                if (graph.data.get(i) != null) {
+                    return false;
+                }
+            }
+        }
+        return this.data.subList(0, commonLen).equals(other.data.subList(0, commonLen));
     }
 }

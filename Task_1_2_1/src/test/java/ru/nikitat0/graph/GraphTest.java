@@ -26,7 +26,7 @@ abstract class GraphTest<T extends Graph> {
         Stack<Integer> vertices = new Stack<>();
         for (int i = 0; i < 3; i++) {
             vertices.add(graph.addVertex());
-            Assertions.assertEquals(vertices, verticesToList(graph));
+            Assertions.assertIterableEquals(vertices, verticesToList(graph));
         }
 
         graph.addEdge(vertices.get(0), vertices.get(1));
@@ -38,6 +38,12 @@ abstract class GraphTest<T extends Graph> {
         Assertions.assertIterableEquals(
                 Stream.of(vertices.get(2)).sorted().collect(Collectors.toList()),
                 adjacentToList(graph, vertices.get(1)));
+
+        graph.forEachVertex((int u) -> {
+            List<Integer> adjacent = graph.getAdjacentVertices(u);
+            Collections.sort(adjacent);
+            Assertions.assertEquals(adjacentToList(graph, u), adjacent);
+        });
 
         graph.removeVertex(vertices.pop());
         Assertions.assertEquals(vertices, verticesToList(graph));
@@ -92,6 +98,21 @@ abstract class GraphTest<T extends Graph> {
         Assertions.assertIterableEquals(
                 Collections.emptyList(),
                 adjacentToList(graph, 5));
+    }
+
+    @Test
+    void testEqualsToString() {
+        Graph expected = newGraph();
+        Assertions.assertEquals("", expected.toString());
+        int u = expected.addVertex();
+        int v = expected.addVertex();
+        int w = expected.addVertex();
+        expected.addEdge(u, v);
+        expected.addEdge(u, w);
+        expected.addEdge(v, w);
+        Graph actual = loadGraph(new StringReader(expected.toString()));
+        Assertions.assertEquals(expected, actual);
+        Assertions.assertNotEquals(newGraph(), actual);
     }
 
     private static List<Integer> verticesToList(Graph graph) {

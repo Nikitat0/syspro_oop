@@ -90,5 +90,4 @@ public interface Graph {
         this.forEachAdjacent(u, (int v) -> vertices.add(v));
         return vertices;
     }
-
 }

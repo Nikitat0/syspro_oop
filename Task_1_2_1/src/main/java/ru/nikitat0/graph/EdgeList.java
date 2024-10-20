@@ -1,18 +1,18 @@
 package ru.nikitat0.graph;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.function.IntConsumer;
 
 /**
  * A graph represented by edge list.
  */
-public class EdgeList implements Graph {
-    private final List<Edge> edges = new ArrayList<>();
+public final class EdgeList implements Graph {
+    private final Set<Edge> edges = new HashSet<>();
     private final BitSet vertices = new BitSet();
     private final IdentifiersCache ids = new IdentifiersCache();
 
@@ -100,6 +100,32 @@ public class EdgeList implements Graph {
                 action.accept(edge.to);
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof EdgeList
+                && this.vertices.equals(((EdgeList) o).vertices)
+                && this.edges.equals(((EdgeList) o).edges);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        forEachVertex((int u) -> {
+            sb.append(u);
+            sb.append(' ');
+        });
+        if (sb.length() != 0) {
+            sb.setCharAt(sb.length() - 1, '\n');
+        }
+        for (Edge edge : edges) {
+            sb.append(edge.from);
+            sb.append(' ');
+            sb.append(edge.to);
+            sb.append('\n');
+        }
+        return sb.toString();
     }
 
     private static final class Edge {
