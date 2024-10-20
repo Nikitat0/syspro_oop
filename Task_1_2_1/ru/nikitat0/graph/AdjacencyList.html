@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":9,"i7":10,"i8":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":9,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -122,7 +122,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
+<li><a href="AdjacencyBasedGraph.html" title="class in ru.nikitat0.graph">ru.nikitat0.graph.AdjacencyBasedGraph</a></li>
+<li>
+<ul class="inheritance">
 <li>ru.nikitat0.graph.AdjacencyList</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -135,8 +140,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <hr>
 <pre>public final class <span class="typeNameLabel">AdjacencyList</span>
-extends java.lang.Object
-implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a></pre>
+extends <a href="AdjacencyBasedGraph.html" title="class in ru.nikitat0.graph">AdjacencyBasedGraph</a></pre>
 <div class="block">A graph represented by adjacency list.</div>
 </li>
 </ul>
@@ -199,6 +203,11 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#forEachAdjacent(int,java.util.function.IntConsumer)">forEachAdjacent</a></span>&#8203;(int&nbsp;u,
                java.util.function.IntConsumer&nbsp;action)</code></th>
@@ -206,7 +215,7 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <div class="block">Applies the given action to each vertex adjacent to the specified vertex.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#forEachVertex(java.util.function.IntConsumer)">forEachVertex</a></span>&#8203;(java.util.function.IntConsumer&nbsp;action)</code></th>
 <td class="colLast">
@@ -215,21 +224,21 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
  throws an exception.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertexNumberUpperBound()">getVertexNumberUpperBound</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the current upper bound for vertex number.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasVertex(int)">hasVertex</a></span>&#8203;(int&nbsp;u)</code></th>
 <td class="colLast">
 <div class="block">Returns true if graph contains vertex with given number.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>static <a href="AdjacencyList.html" title="class in ru.nikitat0.graph">AdjacencyList</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#load(java.lang.Readable)">load</a></span>&#8203;(java.lang.Readable&nbsp;readable)</code></th>
 <td class="colLast">
@@ -237,7 +246,7 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
  list of vertices indentifiers, next lines contain list of edges.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(int,int)">removeEdge</a></span>&#8203;(int&nbsp;u,
           int&nbsp;v)</code></th>
@@ -245,7 +254,7 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <div class="block">Removes an edge from the graph.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(int)">removeVertex</a></span>&#8203;(int&nbsp;u)</code></th>
 <td class="colLast">
@@ -254,11 +263,18 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 </tr>
 </table>
 <ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.ru.nikitat0.graph.AdjacencyBasedGraph">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;ru.nikitat0.graph.<a href="AdjacencyBasedGraph.html" title="class in ru.nikitat0.graph">AdjacencyBasedGraph</a></h3>
+<code><a href="AdjacencyBasedGraph.html#toString()">toString</a></code></li>
+</ul>
+<ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.ru.nikitat0.graph.Graph">
@@ -338,8 +354,6 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#addVertex()">Graph</a></code></span></div>
 <div class="block">Adds a new vertex to the graph.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#addVertex()">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the identifier of the added vertex</dd>
 </dl>
@@ -355,8 +369,6 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#hasVertex(int)">Graph</a></code></span></div>
 <div class="block">Returns true if graph contains vertex with given number.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#hasVertex(int)">hasVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>u</code> - the number of vertex.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -374,8 +386,6 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#removeVertex(int)">Graph</a></code></span></div>
 <div class="block">Removes a vertex from the graph.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#removeVertex(int)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>u</code> - the identifier of the vertex</dd>
 </dl>
@@ -392,8 +402,6 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#addEdge(int,int)">Graph</a></code></span></div>
 <div class="block">Adds a new edge to the graph. Does nothing if the edge already exists.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#addEdge(int,int)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>u</code> - the identifier of the first vertex</dd>
 <dd><code>v</code> - the identifier of the second vertex</dd>
@@ -411,8 +419,6 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#removeEdge(int,int)">Graph</a></code></span></div>
 <div class="block">Removes an edge from the graph. Does nothing if there is no such edge.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#removeEdge(int,int)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>u</code> - the identifier of the first vertex</dd>
 <dd><code>v</code> - the identifier of the second vertex</dd>
@@ -429,8 +435,6 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#getVertexNumberUpperBound()">Graph</a></code></span></div>
 <div class="block">Returns the current upper bound for vertex number.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#getVertexNumberUpperBound()">getVertexNumberUpperBound</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the current upper bound for vertex number</dd>
 </dl>
@@ -448,8 +452,6 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
  processed or the action
  throws an exception.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#forEachVertex(java.util.function.IntConsumer)">forEachVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>action</code> - the action to be performed for each element</dd>
 </dl>
@@ -458,7 +460,7 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <a id="forEachAdjacent(int,java.util.function.IntConsumer)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>forEachAdjacent</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;forEachAdjacent&#8203;(int&nbsp;u,
@@ -466,11 +468,22 @@ implements <a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Graph.html#forEachAdjacent(int,java.util.function.IntConsumer)">Graph</a></code></span></div>
 <div class="block">Applies the given action to each vertex adjacent to the specified vertex.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#forEachAdjacent(int,java.util.function.IntConsumer)">forEachAdjacent</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nikitat0.graph">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>u</code> - the vertex identifier</dd>
 <dd><code>action</code> - the action to perform on each adjacent vertex</dd>
+</dl>
+</li>
+</ul>
+<a id="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>equals</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;o)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 </dl>
 </li>
 </ul>
