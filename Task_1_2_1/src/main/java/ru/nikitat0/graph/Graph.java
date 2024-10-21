@@ -93,6 +93,14 @@ public interface Graph {
         return vertices;
     }
 
+    /**
+     * Checks equivalence of two graph, comparing theirs sets of vertices and edges.
+     *
+     * @param a the first graph
+     * @param b the second graph
+     * @return true, if given two graph consisting of equal sets of vertices and
+     *         edges
+     */
     public static boolean equals(Graph a, Graph b) {
         boolean[] equals = new boolean[] { true };
         a.forEachVertex((int u) -> {
