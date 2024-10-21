@@ -8,6 +8,11 @@ import java.util.stream.Collectors;
  */
 public abstract class AdjacencyBasedGraph implements Graph {
     @Override
+    public boolean equals(Object other) {
+        return other instanceof Graph && Graph.equals(this, (Graph) other);
+    }
+
+    @Override
     public String toString() {
         StringBuilder head = new StringBuilder();
         StringBuilder body = new StringBuilder();

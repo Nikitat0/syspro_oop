@@ -103,10 +103,8 @@ public final class EdgeList implements Graph {
     }
 
     @Override
-    public boolean equals(Object o) {
-        return o instanceof EdgeList
-                && this.vertices.equals(((EdgeList) o).vertices)
-                && this.edges.equals(((EdgeList) o).edges);
+    public boolean equals(Object other) {
+        return other instanceof Graph && Graph.equals(this, (Graph) other);
     }
 
     @Override

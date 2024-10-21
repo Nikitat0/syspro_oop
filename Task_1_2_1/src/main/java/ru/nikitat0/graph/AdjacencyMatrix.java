@@ -122,21 +122,4 @@ public class AdjacencyMatrix extends AdjacencyBasedGraph {
             action.accept(v);
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof AdjacencyMatrix)) {
-            return false;
-        }
-        AdjacencyMatrix other = (AdjacencyMatrix) o;
-        int commonLen = Math.min(this.data.size(), other.data.size());
-        for (AdjacencyMatrix graph : new AdjacencyMatrix[] { this, other }) {
-            for (int i = commonLen; i < graph.data.size(); i++) {
-                if (graph.data.get(i) != null) {
-                    return false;
-                }
-            }
-        }
-        return this.data.subList(0, commonLen).equals(other.data.subList(0, commonLen));
-    }
 }

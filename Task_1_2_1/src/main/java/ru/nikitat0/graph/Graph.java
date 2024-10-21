@@ -2,6 +2,8 @@ package ru.nikitat0.graph;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.IntConsumer;
 
 /**
@@ -89,5 +91,25 @@ public interface Graph {
         ArrayList<Integer> vertices = new ArrayList<>();
         this.forEachAdjacent(u, (int v) -> vertices.add(v));
         return vertices;
+    }
+
+    public static boolean equals(Graph a, Graph b) {
+        boolean[] equals = new boolean[] { true };
+        a.forEachVertex((int u) -> {
+            equals[0] &= b.hasVertex(u);
+            Set<Integer> leftAdj = new TreeSet<>();
+            a.forEachAdjacent(u, (int v) -> {
+                leftAdj.add(v);
+            });
+            Set<Integer> rightAdj = new TreeSet<>();
+            b.forEachAdjacent(u, (int v) -> {
+                rightAdj.add(v);
+            });
+            equals[0] &= leftAdj.equals(rightAdj);
+        });
+        b.forEachVertex((int u) -> {
+            equals[0] &= a.hasVertex(u);
+        });
+        return equals[0];
     }
 }

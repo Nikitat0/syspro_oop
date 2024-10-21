@@ -120,21 +120,4 @@ public final class AdjacencyList extends AdjacencyBasedGraph {
             action.accept(v);
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof AdjacencyList)) {
-            return false;
-        }
-        AdjacencyList other = (AdjacencyList) o;
-        int commonLen = Math.min(this.data.size(), other.data.size());
-        for (AdjacencyList graph : new AdjacencyList[] { this, other }) {
-            for (int i = commonLen; i < graph.data.size(); i++) {
-                if (graph.data.get(i) != null) {
-                    return false;
-                }
-            }
-        }
-        return this.data.subList(0, commonLen).equals(other.data.subList(0, commonLen));
-    }
 }
