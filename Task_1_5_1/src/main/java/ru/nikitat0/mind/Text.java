@@ -1,6 +1,6 @@
 package ru.nikitat0.mind;
 
-public class Text extends InlineElement {
+public class Text extends Element.Inline {
     private final String raw;
 
     static void noNewline(CharSequence seq) {

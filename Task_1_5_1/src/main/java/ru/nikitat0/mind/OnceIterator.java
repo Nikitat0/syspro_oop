@@ -9,15 +9,15 @@ final class OnceIterator<T> implements Iterator<T> {
         this.element = element;
     }
 
-	@Override
-	public boolean hasNext() {
+    @Override
+    public boolean hasNext() {
         return element != null;
-	}
+    }
 
-	@Override
-	public T next() {
+    @Override
+    public T next() {
         T element = this.element;
         this.element = null;
         return element;
-	}
+    }
 }

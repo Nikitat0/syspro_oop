@@ -4,6 +4,9 @@ import java.util.StringJoiner;
 import org.junit.jupiter.api.Assertions;
 
 class MdTest {
+    static final Element.Inline EMPTY_ELEMENT = new Text("");
+    static final Element.Inline DUMMY_ELEMENT = new Text("Dummy");
+
     static String multiline(String... lines) {
         StringJoiner joiner = new StringJoiner("\n");
         for (String line : lines) {

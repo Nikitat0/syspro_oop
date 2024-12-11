@@ -1,5 +1,8 @@
 package ru.nikitat0.mind;
 
+import static ru.nikitat0.mind.MdTest.EMPTY_ELEMENT;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class BasicMarkdownTest {
@@ -13,8 +16,8 @@ class BasicMarkdownTest {
 
         MdTest.assertMd("**bold**_italic_ and text",
                 new Text.Bold("bold")
-                .join(new Text.Italic("italic"))
-                .join(new Text(" and text")));
+                        .join(new Text.Italic("italic"))
+                        .join(new Text(" and text")));
     }
 
     @Test
@@ -36,5 +39,44 @@ class BasicMarkdownTest {
         builder.setTooltip(">_ sys.pro mmf.nsu");
         MdTest.assertMd("![SysPro logo](https://sys.pro/assets/logo.jpg \">_ sys.pro mmf.nsu\")",
                 builder.build());
+    }
+
+    @Test
+    void testHeader() {
+        MdTest.assertMd("# H1", new Header(new Text("H1")));
+        MdTest.assertMd("#### H4", new Header(new Text("H4"), 4));
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Header(EMPTY_ELEMENT, 0));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Header(EMPTY_ELEMENT, 7));
+    }
+
+    @Test
+    void testCodeBlock() {
+        CodeBlock shellSession = new CodeBlock(MdTest.multiline(
+                "$ echo Hello",
+                "Hello",
+                ""));
+        MdTest.assertMd(MdTest.multiline(
+                "```",
+                "$ echo Hello",
+                "Hello",
+                "",
+                "```"),
+                shellSession);
+
+        CodeBlock cHello = new CodeBlock(MdTest.multiline(
+                "#include <stdio.h>",
+                "",
+                "int main() {",
+                "  printf(\"Hello\")",
+                "}"), "c");
+        MdTest.assertMd(MdTest.multiline(
+                "```c",
+                "#include <stdio.h>",
+                "",
+                "int main() {",
+                "  printf(\"Hello\")",
+                "}",
+                "```"), cHello);
     }
 }

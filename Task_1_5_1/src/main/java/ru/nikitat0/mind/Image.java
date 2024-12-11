@@ -1,6 +1,6 @@
 package ru.nikitat0.mind;
 
-public class Image extends InlineElement {
+public class Image extends Element.Inline {
     private final Link imageLink;
 
     @Override

@@ -2,16 +2,16 @@ package ru.nikitat0.mind;
 
 import java.util.ArrayList;
 
-public class Table {
-    private final InlineElement[] headers;
+public class Table extends Element {
+    private final Element.Inline[] headers;
     private final Alignment[] alignment;
-    private final InlineElement[][] rows;
+    private final Element.Inline[][] rows;
 
-    private int getHeight() {
+    private int getRowCount() {
         return rows.length;
     }
 
-    private int getWidth() {
+    private int getColumnCount() {
         return headers.length;
     }
 
@@ -26,13 +26,13 @@ public class Table {
             return false;
         }
         Table otherTable = (Table) other;
-        if (this.getWidth() != otherTable.getWidth()) {
+        if (this.getColumnCount() != otherTable.getColumnCount()) {
             return false;
         }
-        if (this.getHeight() != otherTable.getHeight()) {
+        if (this.getRowCount() != otherTable.getRowCount()) {
             return false;
         }
-        for (int i = 0; i < this.getWidth(); i++) {
+        for (int i = 0; i < this.getColumnCount(); i++) {
             if (!this.headers[i].equals(otherTable.headers[i])) {
                 return false;
             }
@@ -40,8 +40,8 @@ public class Table {
                 return false;
             }
         }
-        for (int j = 0; j < this.getHeight(); j++) {
-            for (int i = 0; i < this.getWidth(); i++) {
+        for (int j = 0; j < this.getRowCount(); j++) {
+            for (int i = 0; i < this.getColumnCount(); i++) {
                 if (this.rows[j][i].equals(otherTable.rows[j][i])) {
                     return false;
                 }
@@ -52,39 +52,36 @@ public class Table {
 
     @Override
     public String toString() {
-        ColumnsWidths widths = new ColumnsWidths(getWidth()).updateAll(3);
+        ColumnsWidths widths = new ColumnsWidths(getColumnCount()).updateAll(3);
 
-        String[] renderedHeaders = new String[getWidth()];
-        for (int i = 0; i < getWidth(); i++) {
+        String[] renderedHeaders = new String[getColumnCount()];
+        for (int i = 0; i < getColumnCount(); i++) {
             renderedHeaders[i] = headers[i].toString();
             widths.update(i, renderedHeaders[i].length());
         }
 
-        String[][] renderedRows = new String[getHeight()][];
-        for (int j = 0; j < getHeight(); j++) {
-            renderedRows[j] = new String[getWidth()];
-            for (int i = 0; i < getWidth(); i++) {
+        String[][] renderedRows = new String[getRowCount()][];
+        for (int j = 0; j < getRowCount(); j++) {
+            renderedRows[j] = new String[getColumnCount()];
+            for (int i = 0; i < getColumnCount(); i++) {
                 renderedRows[j][i] = rows[j][i].toString();
                 widths.update(i, renderedRows[j][i].length());
             }
         }
 
-        String[] delimeterRows = new String[getWidth()];
-        for (int i = 0; i < getWidth(); i++) {
+        String[] delimeterRows = new String[getColumnCount()];
+        for (int i = 0; i < getColumnCount(); i++) {
             delimeterRows[i] = alignment[i].getDelimeterRow(widths.get(i));
         }
 
-        String[][] rows = new String[getHeight() + 2][];
+        String[][] rows = new String[getRowCount() + 2][];
         rows[0] = renderedHeaders;
         rows[1] = delimeterRows;
-        System.arraycopy(renderedRows, 0, rows, 2, getHeight());
+        System.arraycopy(renderedRows, 0, rows, 2, getRowCount());
 
         StringBuilder builder = new StringBuilder();
         for (String[] row : rows) {
-            for (int i = 0; i < getWidth(); i++) {
-                if (i != 0) {
-                    builder.append(' ');
-                }
+            for (int i = 0; i < getColumnCount(); i++) {
                 builder.append("| ");
 
                 int totalPadding = widths.get(i) - row[i].length();
@@ -95,61 +92,42 @@ public class Table {
                 for (int c = 0; c < alignment[i].getRightPadding(totalPadding); c++) {
                     builder.append(' ');
                 }
+
+                builder.append(' ');
             }
-            builder.append(" |\n");
+            builder.append("|\n");
         }
         builder.deleteCharAt(builder.length() - 1);
         return builder.toString();
     }
 
-    private Table(InlineElement[] headers, Alignment[] alignment, InlineElement[][] rows) {
-        this.headers = headers;
-        this.alignment = alignment;
-        this.rows = rows;
-    }
+    private static final class ColumnsWidths {
+        private final int[] widths;
 
-    public static final class Builder {
-        private final InlineElement[] headers;
-        private Alignment[] alignment;
-        private ArrayList<InlineElement[]> rows;
-
-        private int getRowCount() {
-            return rows.size();
+        ColumnsWidths(int columnCount) {
+            this.widths = new int[columnCount];
         }
 
-        private int getColumnCount() {
-            return headers.length;
+        public int getColumnsCount() {
+            return widths.length;
         }
 
-        public Builder(InlineElement... headers) {
-            this.headers = headers;
-            this.alignment = new Alignment[getColumnCount()];
-            this.rows = new ArrayList<>();
+        public int get(int column) {
+            return widths[column];
         }
 
-        public Builder setAlignment(Alignment... alignment) {
-            if (alignment.length != getColumnCount()) {
-                throw new IllegalArgumentException();
+        public ColumnsWidths update(int column, int width) {
+            if (width > widths[column]) {
+                widths[column] = width;
             }
-            this.alignment = alignment;
             return this;
         }
 
-        public Builder addRow(InlineElement... cells) {
-            if (cells.length != getColumnCount()) {
-                throw new IllegalArgumentException();
+        public ColumnsWidths updateAll(int width) {
+            for (int i = 0; i < getColumnsCount(); i++) {
+                update(i, width);
             }
-            rows.add(cells);
             return this;
-        }
-
-        public Table build() {
-            for (int i = 0; i < getColumnCount(); i++) {
-                if (alignment[i] == null) {
-                    alignment[i] = Alignment.Unspecified;
-                }
-            }
-            return new Table(headers, alignment, rows.toArray(new InlineElement[getRowCount()][]));
         }
     }
 
@@ -194,6 +172,7 @@ public class Table {
 
         private int getRightPadding(int totalPadding) {
             switch (this) {
+                case Unspecified:
                 case Left:
                     return totalPadding;
                 case Center:
@@ -201,6 +180,61 @@ public class Table {
                 default:
                     return 0;
             }
+        }
+    }
+
+    private Table(Inline[] headers, Alignment[] alignment, Inline[][] rows) {
+        this.headers = headers;
+        this.alignment = alignment;
+        this.rows = rows;
+    }
+
+    public static final class Builder {
+        private final Inline[] headers;
+        private Alignment[] alignment;
+        private ArrayList<Inline[]> rows;
+
+        private int getRowCount() {
+            return rows.size();
+        }
+
+        private int getColumnCount() {
+            return headers.length;
+        }
+
+        public Builder(Inline... headers) {
+            this.headers = headers;
+            this.alignment = new Alignment[getColumnCount()];
+            this.rows = new ArrayList<>();
+        }
+
+        private void checkColumns(int actual) {
+            if (actual == getColumnCount()) {
+                return;
+            }
+            throw new IllegalArgumentException(
+                    String.format("%d columns expected", getColumnCount()));
+        }
+
+        public Builder setAlignment(Alignment... alignment) {
+            checkColumns(alignment.length);
+            this.alignment = alignment;
+            return this;
+        }
+
+        public Builder addRow(Inline... cells) {
+            checkColumns(cells.length);
+            rows.add(cells);
+            return this;
+        }
+
+        public Table build() {
+            for (int i = 0; i < getColumnCount(); i++) {
+                if (alignment[i] == null) {
+                    alignment[i] = Alignment.Unspecified;
+                }
+            }
+            return new Table(headers, alignment, rows.toArray(new Inline[getRowCount()][]));
         }
     }
 }

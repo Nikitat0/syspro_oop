@@ -2,7 +2,7 @@ package ru.nikitat0.mind;
 
 import java.util.Objects;
 
-public class Link extends InlineElement {
+public class Link extends Element.Inline {
     private final String path;
     private final Text text;
     private final String tooltip;

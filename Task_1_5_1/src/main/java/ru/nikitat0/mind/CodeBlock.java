@@ -2,7 +2,7 @@ package ru.nikitat0.mind;
 
 import java.util.Objects;
 
-public class CodeBlock {
+public class CodeBlock extends Element {
     public final String code;
     public final String lang;
 
@@ -23,8 +23,9 @@ public class CodeBlock {
 
     @Override
     public boolean equals(Object other) {
-        if (this.getClass() != other.getClass())
+        if (this.getClass() != other.getClass()) {
             return false;
+        }
         CodeBlock otherBlock = (CodeBlock) other;
         return this.code.equals(otherBlock.code) && this.lang.equals(otherBlock.lang);
     }
