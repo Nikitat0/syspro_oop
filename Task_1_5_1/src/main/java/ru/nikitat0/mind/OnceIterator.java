@@ -1,11 +1,12 @@
 package ru.nikitat0.mind;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 final class OnceIterator<T> implements Iterator<T> {
     private T element;
 
-    public OnceIterator(T element) {
+    OnceIterator(T element) {
         this.element = element;
     }
 
@@ -16,6 +17,9 @@ final class OnceIterator<T> implements Iterator<T> {
 
     @Override
     public T next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
         T element = this.element;
         this.element = null;
         return element;

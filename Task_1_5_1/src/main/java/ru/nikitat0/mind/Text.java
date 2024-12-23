@@ -1,28 +1,32 @@
 package ru.nikitat0.mind;
 
+import java.util.Objects;
+
 public class Text extends Element.Inline {
+    private static final Escaper ESCAPER = new Escaper.Builder()
+            .addEscaped('*')
+            .addEscaped('_')
+            .addEscaped('~')
+            .addEscaped('`')
+            .addEscaped('[')
+            .addEscaped(']')
+            .addEscaped('\n', "<br/>")
+            .build();
+
     private final String raw;
 
-    static void noNewline(CharSequence seq) {
-        seq.chars().forEach((int c) -> {
-            if (c == '\n') {
-                throw new IllegalArgumentException("newline is not allowed");
-            }
-        });
-    }
-
-    private static String mdEscape(CharSequence seq) {
-        return seq.toString();
-    }
-
     public Text(CharSequence seq) {
-        noNewline(seq);
-        this.raw = mdEscape(seq);
+        this.raw = ESCAPER.escape(seq);
     }
 
     @Override
     public boolean equals(Object other) {
         return this.getClass() == other.getClass() && this.raw.equals(((Text) other).raw);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getClass(), raw);
     }
 
     @Override

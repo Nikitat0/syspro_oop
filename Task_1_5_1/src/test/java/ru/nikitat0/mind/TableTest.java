@@ -1,7 +1,7 @@
 package ru.nikitat0.mind;
 
-import static ru.nikitat0.mind.MdTest.DUMMY_ELEMENT;
-import static ru.nikitat0.mind.MdTest.EMPTY_ELEMENT;
+import static ru.nikitat0.mind.Common.DUMMY_ELEMENT;
+import static ru.nikitat0.mind.Common.EMPTY_ELEMENT;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class TableTest {
                 .addRow(new Text("italic"), new Text.Italic("italic"))
                 .addRow(new Text("bold"), new Text.Bold("bold"))
                 .build();
-        MdTest.assertMd(MdTest.multiline(
+        Common.assertMd(Common.multiline(
                 "| Before |  After   |",
                 "| :----: | :------: |",
                 "| italic | _italic_ |",
@@ -27,7 +27,7 @@ class TableTest {
         Table table = new Table.Builder(EMPTY_ELEMENT, EMPTY_ELEMENT, EMPTY_ELEMENT, EMPTY_ELEMENT)
                 .setAlignment(Alignment.Unspecified, Alignment.Left, Alignment.Center, Alignment.Right)
                 .build();
-        MdTest.assertMd(MdTest.multiline(
+        Common.assertMd(Common.multiline(
                 "|     |     |     |     |",
                 "| --- | :-- | :-: | --: |"), table);
     }

@@ -5,52 +5,103 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public abstract class Element {
-    public static abstract class Inline {
+    public Block then(CharSequence next) {
+        return then(new Text(next));
+
+    }
+
+    public Block then(Element.Inline next) {
+        return then(next.toParagraph());
+    }
+
+    public abstract Block then(Block next);
+
+    protected Iterator<Element> iterator() {
+        return new OnceIterator<Element>(this);
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCode = 1;
+        Iterator<Element> iterator = iterator();
+        while (iterator.hasNext()) {
+            hashCode = 31 * hashCode + Objects.hashCode(iterator.next());
+        }
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Element)) {
+            return false;
+        }
+        Iterator<Element> left = this.iterator();
+        Iterator<Element> right = ((Inline) other).iterator();
+        while (left.hasNext() && right.hasNext()) {
+            if (!Objects.equals(left.next(), right.next())) {
+                return false;
+            }
+        }
+        return left.hasNext() == right.hasNext();
+    }
+
+    public static abstract class Inline extends Element {
+
         public Inline join(CharSequence seq) {
-            return new Sequence(this, new Text(seq));
+            return join(new Text(seq));
         }
 
         public Inline join(Inline next) {
-            return new Sequence(this, next);
+            return new Sequence(next);
         }
 
-        protected Iterator<Inline> iterator() {
-            return new OnceIterator<Inline>(this);
+        @Override
+        public Block then(Block next) {
+            return toParagraph().then(next);
         }
 
-        static class Sequence extends Inline {
-            private final Inline text;
+        private class Sequence extends Inline {
             private final Inline next;
 
-            Sequence(Inline text, Inline next) {
-                this.text = text;
+            Sequence(Inline next) {
                 this.next = next;
             }
 
-            protected Iterator<Inline> iterator() {
-                return new Iterator<Inline>() {
-                    private Iterator<Inline> iter = text.iterator();
-                    private boolean isIteratingCurrent = true;
+            protected Iterator<Element> iterator() {
+                return new BiIterator<Element>(Inline.this.iterator(), next.iterator());
+            }
 
-                    private void forward() {
-                        if (isIteratingCurrent && !iter.hasNext()) {
-                            iter = next.iterator();
-                            isIteratingCurrent = false;
-                        }
-                    }
+            @Override
+            public String toString() {
+                StringJoiner joiner = new StringJoiner("");
+                Iterator<Element> iterator = iterator();
+                while (iterator.hasNext()) {
+                    joiner.add(iterator.next().toString());
+                }
+                return joiner.toString();
+            }
+        }
 
-                    @Override
-                    public boolean hasNext() {
-                        forward();
-                        return iter.hasNext();
-                    }
+        public Block toParagraph() {
+            return new Paragraph(this);
+        }
+    }
 
-                    @Override
-                    public Inline next() {
-                        return iter.next();
-                    }
+    public static abstract class Block extends Element {
+        @Override
+        public Block then(Block next) {
+            return new Sequence(next);
+        }
 
-                };
+        private class Sequence extends Block {
+            private final Block next;
+
+            Sequence(Block next) {
+                this.next = next;
+            }
+
+            protected Iterator<Element> iterator() {
+                return new BiIterator<Element>(Block.this.iterator(), next.iterator());
             }
 
             @Override
@@ -59,24 +110,9 @@ public abstract class Element {
             }
 
             @Override
-            public boolean equals(Object other) {
-                if (!(other instanceof Sequence)) {
-                    return false;
-                }
-                Iterator<Inline> left = this.iterator();
-                Iterator<Inline> right = this.iterator();
-                while (left.hasNext() && right.hasNext()) {
-                    if (!Objects.equals(left.next(), right.next())) {
-                        return false;
-                    }
-                }
-                return left.hasNext() == right.hasNext();
-            }
-
-            @Override
             public String toString() {
                 StringJoiner joiner = new StringJoiner("");
-                Iterator<Inline> iterator = iterator();
+                Iterator<Element> iterator = iterator();
                 while (iterator.hasNext()) {
                     joiner.add(iterator.next().toString());
                 }

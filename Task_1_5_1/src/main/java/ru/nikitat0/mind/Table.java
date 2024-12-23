@@ -2,7 +2,7 @@ package ru.nikitat0.mind;
 
 import java.util.ArrayList;
 
-public class Table extends Element {
+public class Table extends Element.Block {
     private final Element.Inline[] headers;
     private final Alignment[] alignment;
     private final Element.Inline[][] rows;
@@ -183,16 +183,16 @@ public class Table extends Element {
         }
     }
 
-    private Table(Inline[] headers, Alignment[] alignment, Inline[][] rows) {
+    private Table(Element.Inline[] headers, Alignment[] alignment, Element.Inline[][] rows) {
         this.headers = headers;
         this.alignment = alignment;
         this.rows = rows;
     }
 
     public static final class Builder {
-        private final Inline[] headers;
+        private final Element.Inline[] headers;
         private Alignment[] alignment;
-        private ArrayList<Inline[]> rows;
+        private ArrayList<Element.Inline[]> rows;
 
         private int getRowCount() {
             return rows.size();
@@ -202,7 +202,7 @@ public class Table extends Element {
             return headers.length;
         }
 
-        public Builder(Inline... headers) {
+        public Builder(Element.Inline... headers) {
             this.headers = headers;
             this.alignment = new Alignment[getColumnCount()];
             this.rows = new ArrayList<>();
@@ -222,7 +222,7 @@ public class Table extends Element {
             return this;
         }
 
-        public Builder addRow(Inline... cells) {
+        public Builder addRow(Element.Inline... cells) {
             checkColumns(cells.length);
             rows.add(cells);
             return this;
@@ -234,7 +234,7 @@ public class Table extends Element {
                     alignment[i] = Alignment.Unspecified;
                 }
             }
-            return new Table(headers, alignment, rows.toArray(new Inline[getRowCount()][]));
+            return new Table(headers, alignment, rows.toArray(new Element.Inline[getRowCount()][]));
         }
     }
 }

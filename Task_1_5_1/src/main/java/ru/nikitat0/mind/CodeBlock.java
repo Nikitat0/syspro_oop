@@ -2,7 +2,7 @@ package ru.nikitat0.mind;
 
 import java.util.Objects;
 
-public class CodeBlock extends Element {
+public class CodeBlock extends Element.Block {
     public final String code;
     public final String lang;
 
@@ -11,9 +11,8 @@ public class CodeBlock extends Element {
     }
 
     public CodeBlock(String code, String lang) {
-        Text.noNewline(lang);
         this.code = code;
-        this.lang = lang;
+        this.lang = lang.replace("\n", "");
     }
 
     @Override

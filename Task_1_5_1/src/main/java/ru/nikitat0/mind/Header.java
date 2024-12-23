@@ -2,7 +2,7 @@ package ru.nikitat0.mind;
 
 import java.util.Objects;
 
-public class Header extends Element {
+public class Header extends Element.Block {
     private final Element.Inline content;
     private final int level;
 

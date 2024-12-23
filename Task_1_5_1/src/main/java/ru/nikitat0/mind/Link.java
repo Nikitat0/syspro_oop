@@ -63,5 +63,6 @@ public class Link extends Element.Inline {
 
     private static Escaper tooltipEscaper = new Escaper.Builder()
             .addEscaped('"')
+            .addEscaped('\n', " ")
             .build();
 }
