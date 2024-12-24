@@ -19,12 +19,10 @@ public class Header extends Element.Block {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(getClass(), content, level);
-    }
-
-    @Override
     public boolean equals(Object otherObj) {
+        if (otherObj == null) {
+            return false;
+        }
         if (!(otherObj instanceof Header)) {
             return false;
         }

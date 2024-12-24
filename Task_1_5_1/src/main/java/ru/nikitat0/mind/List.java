@@ -9,6 +9,9 @@ public class List extends Element.Block {
 
     @Override
     public boolean equals(Object otherObj) {
+        if (otherObj == null) {
+            return false;
+        }
         if (this.getClass() != otherObj.getClass()) {
             return false;
         }
@@ -17,8 +20,24 @@ public class List extends Element.Block {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(getClass(), style, items);
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        int i = 1;
+        for (Item item : items) {
+            if (style == Style.Ordered) {
+                builder.append(i);
+                builder.append('.');
+            } else {
+                builder.append('-');
+            }
+            builder.append(item);
+            builder.append('\n');
+            i++;
+        }
+        if (builder.length() > 0) {
+            builder.deleteCharAt(builder.length() - 1);
+        }
+        return builder.toString();
     }
 
     private List(Style style, ArrayList<Item> items) {
@@ -100,7 +119,7 @@ public class List extends Element.Block {
             }
             if (body != null) {
                 builder.append('\n');
-                builder.append(body.toString().replaceAll("^", "    "));
+                builder.append(body.toString().replaceAll("(?m)^", "    "));
             }
             return builder.toString();
         }

@@ -1,7 +1,5 @@
 package ru.nikitat0.mind;
 
-import java.util.Objects;
-
 public class Quote extends Element.Block {
     private final Element.Block content;
 
@@ -14,20 +12,19 @@ public class Quote extends Element.Block {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (this.getClass() != other.getClass()) {
+    public boolean equals(Object otherObj) {
+        if (otherObj == null) {
             return false;
         }
-        return this.content.equals(((Quote) other).content);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getClass(), content);
+        if (this.getClass() != otherObj.getClass()) {
+            return false;
+        }
+        Quote other = (Quote) otherObj;
+        return this.content.equals(other.content);
     }
 
     @Override
     public String toString() {
-        return content.toString().replaceAll("^", "> ");
+        return content.toString().replaceAll("(?m)^", "> ");
     }
 }

@@ -20,13 +20,15 @@ public class Text extends Element.Inline {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return this.getClass() == other.getClass() && this.raw.equals(((Text) other).raw);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getClass(), raw);
+    public boolean equals(Object otherObj) {
+        if (otherObj == null) {
+            return false;
+        }
+        if (this.getClass() != otherObj.getClass()) {
+            return false;
+        }
+        Text other = (Text) otherObj;
+        return this.raw.equals(other.raw);
     }
 
     @Override

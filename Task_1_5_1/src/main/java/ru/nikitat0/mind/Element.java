@@ -22,27 +22,25 @@ public abstract class Element {
 
     @Override
     public int hashCode() {
-        int hashCode = 1;
-        Iterator<Element> iterator = iterator();
-        while (iterator.hasNext()) {
-            hashCode = 31 * hashCode + Objects.hashCode(iterator.next());
-        }
-        return hashCode;
+        return this.toString().hashCode();
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Element)) {
+    public boolean equals(Object otherObj) {
+        if (otherObj == null) {
             return false;
         }
-        Iterator<Element> left = this.iterator();
-        Iterator<Element> right = ((Inline) other).iterator();
-        while (left.hasNext() && right.hasNext()) {
-            if (!Objects.equals(left.next(), right.next())) {
+        if (!(otherObj instanceof Element)) {
+            return false;
+        }
+        Iterator<Element> thisIterator = this.iterator();
+        Iterator<Element> otherIterator = ((Element) otherObj).iterator();
+        while (thisIterator.hasNext() && otherIterator.hasNext()) {
+            if (!Objects.equals(thisIterator.next(), otherIterator.next())) {
                 return false;
             }
         }
-        return left.hasNext() == right.hasNext();
+        return thisIterator.hasNext() == otherIterator.hasNext();
     }
 
     public static abstract class Inline extends Element {
@@ -105,13 +103,8 @@ public abstract class Element {
             }
 
             @Override
-            public int hashCode() {
-                return toString().hashCode();
-            }
-
-            @Override
             public String toString() {
-                StringJoiner joiner = new StringJoiner("");
+                StringJoiner joiner = new StringJoiner("\n\n");
                 Iterator<Element> iterator = iterator();
                 while (iterator.hasNext()) {
                     joiner.add(iterator.next().toString());

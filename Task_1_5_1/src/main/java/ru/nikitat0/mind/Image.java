@@ -4,13 +4,12 @@ public class Image extends Element.Inline {
     private final Link imageLink;
 
     @Override
-    public int hashCode() {
-        return imageLink.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other instanceof Image && this.imageLink.equals(((Image) other).imageLink);
+    public boolean equals(Object otherObj) {
+        if (otherObj == null) {
+            return false;
+        }
+        Image other = (Image) otherObj;
+        return this.imageLink.equals(other.imageLink);
     }
 
     @Override

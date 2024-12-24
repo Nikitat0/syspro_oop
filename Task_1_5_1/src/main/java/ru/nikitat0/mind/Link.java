@@ -8,17 +8,15 @@ public class Link extends Element.Inline {
     private final String tooltip;
 
     @Override
-    public int hashCode() {
-        return Objects.hash(getClass(), path, text, tooltip);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this.getClass() != other.getClass()) {
+    public boolean equals(Object otherObj) {
+        if (otherObj == null) {
             return false;
         }
-        Link otherLink = (Link) other;
-        return this.text.equals(otherLink.text) && this.path.equals(otherLink.path);
+        if (this.getClass() != otherObj.getClass()) {
+            return false;
+        }
+        Link other = (Link) otherObj;
+        return this.text.equals(other.text) && this.path.equals(other.path);
     }
 
     @Override

@@ -16,12 +16,10 @@ public class CodeBlock extends Element.Block {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(getClass(), code, lang);
-    }
-
-    @Override
     public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
         if (this.getClass() != other.getClass()) {
             return false;
         }

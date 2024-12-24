@@ -16,13 +16,11 @@ public class Table extends Element.Block {
     }
 
     @Override
-    public int hashCode() {
-        return toString().hashCode();
-    }
-
-    @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Table)) {
+        if (other == null) {
+            return false;
+        }
+        if (this.getClass() != other.getClass()) {
             return false;
         }
         Table otherTable = (Table) other;
