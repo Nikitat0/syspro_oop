@@ -18,6 +18,8 @@ class InlineMarkdownTest {
 
         Common.assertMd("\\*\\_\\~\\`\\[\\]", new Text("*_~`[]"));
         Common.assertMd("<br/>", new Text("\n"));
+        Common.assertMd("\\\\", new Text("\\"));
+        Common.assertMd("русский текст", new Text("русский текст"));
     }
 
     @Test

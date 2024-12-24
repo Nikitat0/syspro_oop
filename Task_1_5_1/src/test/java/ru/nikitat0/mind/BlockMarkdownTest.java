@@ -94,5 +94,9 @@ class BasicMarkdownTest {
         Common.assertMd(Common.multiline(
                 "- [x] complete",
                 "- [ ] incomplete"), tasks);
+
+        Assertions.assertNotEquals(ordered, unordered);
+        Assertions.assertNotEquals(ordered, tasks);
+        Assertions.assertNotEquals(unordered, tasks);
     }
 }
